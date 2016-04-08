@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TutorWithParse</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_signup">SignupActivity</string>
+    <string name="emptystring" />
+    <string name="title_activity_student_sign_up">StudentSignUpActivity</string>
+    <string name="title_activity_tutor_sign_up">TutorSignUpActivity</string>
+</resources>
