@@ -10,5 +10,5 @@ public class Winston {
 
     //String username = getIntent().getStringExtra("Username");
     //TextView tv = (TextView)findViewById(R.id.TVusername);
-    //tv.setText(username);
+    //tv.setText(username);gjhkjhjhgcgvhjhkjlkhjghfgchvjkjjmhvncv
 }
