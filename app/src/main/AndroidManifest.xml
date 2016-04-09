@@ -37,6 +37,10 @@
         <activity
             android:name=".TutorSignUpActivity"
             android:label="@string/title_activity_tutor_sign_up"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SearchActivity"
+            android:label="@string/title_activity_search"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
