@@ -13,4 +13,5 @@
     <string name="title_activity_subcategories">Subcategories</string>
     <string name="title_activity_tutor_list">Tutor List</string>
     <string name="title_activity_tutor_details">Tutor Details</string>
+    <string name="title_activity_refine_search">RefineSearch</string>
 </resources>

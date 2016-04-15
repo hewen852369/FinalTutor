@@ -12,4 +12,36 @@
     tools:context="com.example.wen.tutorwithparse.SearchActivity"
     tools:showIn="@layout/activity_search">
 
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/SearchResults"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
+    <EditText
+        android:id="@+id/txtsearch"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Search"/>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtsearch"></ListView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refine Search"
+        android:id="@+id/refinesearch"
+        android:layout_marginBottom="46dp"
+        android:onClick="refineSearchClick"
+        android:layout_toRightOf="@+id/txtsearch"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -33,12 +33,36 @@
         android:layout_toEndOf="@+id/textView4" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:text="Categories"
         android:id="@+id/btn_category"
         android:layout_below="@+id/TVusername"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="121dp" />
+
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Search"
+        android:id="@+id/SearchButton"
+        android:layout_below="@+id/btn_category"
+        android:layout_centerHorizontal="true"
+
+        android:onClick="searchClick"
+        />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Communication"
+        android:id="@+id/button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/SearchButton"/>
+
+
+
 
 </RelativeLayout>

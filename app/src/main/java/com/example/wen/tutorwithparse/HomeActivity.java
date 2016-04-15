@@ -40,4 +40,14 @@ public class HomeActivity extends AppCompatActivity {
         Intent categories = new Intent(this, CategoriesActivity.class);
         startActivity(categories);
     }
+
+    public void searchClick(View v)
+    {
+        //if(v.getId()==R.id.action_settings)
+        {
+            Intent i = new Intent(HomeActivity.this,SearchActivity.class);
+            startActivity(i);
+        }
+    }
+
 }
