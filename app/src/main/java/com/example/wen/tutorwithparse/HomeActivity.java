@@ -1,6 +1,7 @@
 package com.example.wen.tutorwithparse;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -48,6 +49,16 @@ public class HomeActivity extends AppCompatActivity {
             Intent i = new Intent(HomeActivity.this,SearchActivity.class);
             startActivity(i);
         }
+    }
+
+    public void locationClick(View v)
+    {
+        if(v.getId()==R.id.Blocation)
+        {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com"));
+            startActivity(i);
+        }
+
     }
 
 }
