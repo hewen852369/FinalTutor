@@ -7,4 +7,10 @@
     <string name="title_activity_student_sign_up">StudentSignUpActivity</string>
     <string name="title_activity_tutor_sign_up">TutorSignUpActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_categories">Categories</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_subcategories">Subcategories</string>
+    <string name="title_activity_tutor_list">Tutor List</string>
+    <string name="title_activity_tutor_details">Tutor Details</string>
 </resources>

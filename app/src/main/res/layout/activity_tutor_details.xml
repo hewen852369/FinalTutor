@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/card_vertical_margin"
+    android:layout_marginBottom="@dimen/card_vertical_margin"
+    android:id="@+id/Details_Card">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- User avatar -->
+        <LinearLayout
+            android:padding="@dimen/activity_horizontal_margin"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_person_black_48dp"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:id="@+id/tutor_pic"
+                android:layout_weight="0.24" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subject:"
+                    android:textSize="@dimen/sub_text_size"
+                    android:id="@+id/tv_subject"
+                    android:layout_above="@+id/tv_numStudents"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number of Students:"
+                    android:textSize="@dimen/sub_text_size"
+                    android:id="@+id/tv_numStudents"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="name"
+                    android:id="@+id/TVname"
+                    android:textColor="@color/my_black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/tutor_details_name_text_size"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="subject"
+                    android:id="@+id/TVsubject"
+                    android:layout_alignBaseline="@+id/tv_subject"
+                    android:layout_alignBottom="@+id/tv_subject"
+                    android:layout_toRightOf="@+id/tv_subject"
+                    android:layout_toEndOf="@+id/tv_subject"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/my_black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="##"
+                    android:id="@+id/TVnumStudents"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/tv_numStudents"
+                    android:layout_toEndOf="@+id/tv_numStudents"
+                    android:textColor="@color/my_black" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/card_divider" />
+
+        <TextView
+            android:padding="@dimen/activity_horizontal_margin"
+            android:id="@+id/tv_bio"
+            android:text="Brief Tutor Bio.."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/card_divider" />
+
+        <!-- User Actions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/yak_action_margin">
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/ratingBarStyleSmall"
+                android:id="@+id/tutorRatingBar"
+                android:stepSize="1"
+                android:layout_margin="5dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

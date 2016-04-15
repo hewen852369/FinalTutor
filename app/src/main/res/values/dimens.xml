@@ -3,4 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- CardView sub-contents dimensions -->
+    <dimen name="yak_user_height">72dp</dimen>
+    <dimen name="avatar_size">40dp</dimen>
+    <dimen name="sub_text_size">14sp</dimen>
+    <dimen name="yak_action_icon_height">22dp</dimen>
+    <dimen name="yak_action_margin">8dp</dimen>
+    <dimen name="card_vertical_margin">8dp</dimen>
+
+    <dimen name="categories_name_text_size">20sp</dimen>
+    <dimen name="tutor_details_name_text_size">22sp</dimen>
 </resources>
