@@ -25,6 +25,8 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import android.widget.ListView;
+
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -45,6 +47,7 @@ public class SearchActivity extends AppCompatActivity {
     ArrayList<ParseObject> ArrObj;
     List<ParseObject> ArrObj1;
     ParseObject p;
+    int x = 0;
 
     protected void  onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -210,6 +213,7 @@ public class SearchActivity extends AppCompatActivity {
                             Log.d("text", temp);
 
                         }
+
                         //items = new String[]{ArrObj.get(0).getString("MemberID")};
 
                         //listItems = new ArrayList<>(Arrays.asList(items));

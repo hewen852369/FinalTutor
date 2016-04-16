@@ -84,6 +84,10 @@
             android:name=".LocationActivity"
             android:label="@string/title_activity_location"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CommunicationActivity"
+            android:label="@string/title_activity_communication"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
