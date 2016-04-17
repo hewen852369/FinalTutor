@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
 public class CommunicationActivity extends AppCompatActivity {
 
     @Override
@@ -15,6 +19,12 @@ public class CommunicationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_communication);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Communication");
+
+
+        //ParseQuery<ParseObject> query = new ParseQuery("Members");
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
