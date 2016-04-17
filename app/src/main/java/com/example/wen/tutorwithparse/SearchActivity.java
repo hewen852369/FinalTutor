@@ -193,7 +193,7 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                         //tutorList.add(new Tutor("Jeff", "Math", 2, "Hey!"));
                         //tutorList.add(new Tutor("Jerry", "Math", 2, "Suh dude"));
                         ListAdapter myAdapter = new TutorListAdapter(SearchActivity.this, tutorList);
-                        ListView categoryListView = (ListView) findViewById(R.id.tutorListView);
+                        ListView categoryListView = (ListView) findViewById(R.id.tutorListView1);
                         categoryListView.setAdapter(myAdapter);
                     }
 
