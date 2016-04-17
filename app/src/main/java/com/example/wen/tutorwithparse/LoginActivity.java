@@ -18,6 +18,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
@@ -87,6 +88,14 @@ public class LoginActivity extends AppCompatActivity {
         {
             Intent i = new Intent(LoginActivity.this,SignupActivity.class);
             startActivity(i);
+        }
+    }
+
+    public void resetClick(View v)
+    {
+        if (v.getId()==R.id.Breset)
+        {
+            Toast.makeText(LoginActivity.this, "Please contact our tam via tutor@support.edu", Toast.LENGTH_SHORT).show();
         }
     }
 

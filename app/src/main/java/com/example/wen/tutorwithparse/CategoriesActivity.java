@@ -3,64 +3,99 @@ package com.example.wen.tutorwithparse;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import com.example.wen.tutorwithparse.Adapters.CustomAdapter;
+import java.util.List;
+
+import com.example.wen.tutorwithparse.Adapters.CategoryAdapter;
+import com.example.wen.tutorwithparse.Models.CategoriesRowItem;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 public class CategoriesActivity extends AppCompatActivity {
 
-    //TODO: Get from Parse
-    private static final String[] names = new String[] { "Math", "Science", "Social Studies",
-            "English/Language Arts", "Fine Arts", "Business Applications", "Technology" };
 
-    /*private static final Integer[] images = { R.drawable.ic_reply,
-            R.drawable.ic_retweet, R.drawable.ic_person_black_48dp, R.drawable.ic_star };*/
-
-    //ListView listView;
-    //ArrayList<CategoriesRowItem> rowItems;
+    private ListView categoryListView;
+    private ArrayList<CategoriesRowItem> rowItems;
+    private ParseObject p;
+    private ArrayList<ParseObject> ArrObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        /* Was under development, but idk if i want to continue... */
+        rowItems = new ArrayList<>();
+        addCategories();
 
-        //ArrayList<String> namesList = new ArrayList<String>(Arrays.asList(names));
-        /*
-        rowItems = new ArrayList<CategoriesRowItem>();
-        for (int i = 0; i < names.length; i++) {
-            CategoriesRowItem item = new CategoriesRowItem(images[i], names[i]);
-            rowItems.add(item);
-        }
-
-        listView = (ListView) findViewById(R.id.CategoryListView);
+        categoryListView = (ListView) findViewById(R.id.CategoryListView);
         CategoryAdapter adapter = new CategoryAdapter(this, rowItems);
-        listView.setAdapter(adapter);
-        */
-
-        //simple_list_item_1 is a basic text list
-        ListAdapter myAdapter = new CustomAdapter(this, names);
-        ListView categoryListView = (ListView) findViewById(R.id.CategoryListView);
-        categoryListView.setAdapter(myAdapter);
-
+        categoryListView.setAdapter(adapter);
 
         categoryListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         //converts the value of the list position into a string
-                        String name = String.valueOf(parent.getItemAtPosition(position));
+                        CategoriesRowItem item =(CategoriesRowItem) parent.getItemAtPosition(position);
+                        String name = item.getTitle();
                         goToSubCategory(name);
                     }
                 }
         );
+    }
+
+    /*
+    public void queryParse() {
+        ParseQuery<ParseObject> query = new ParseQuery("Members");
+        //query.orderByAscending("MemberID");
+        //query.whereNotEqualTo("MemberID", "Michael Yabuti");
+        //query.whereExists("MemberID");
+
+        //query.whereEqualTo("MemberID", "tutor123");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> userList, ParseException e) {
+                //dlg.dismiss();
+                //Log.d("klakla", "get: " + e + userList.size());
+                if (e == null) {
+                    if (userList.size() > 0) {
+
+                        for (int i = 0; i < userList.size(); i++) {
+                            p = userList.get(i);
+                            ArrObj.add(p);
+                            //col name -->  p.getString("");
+
+                        }
+
+                    }
+
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                    // Alert.alertOneBtn(getActivity(),"Something went wrong!");
+                }
+            }
+
+        });
+        */
+
+    private void addCategories() {
+        rowItems.add(new CategoriesRowItem(R.drawable.math_52, "Math"));
+        rowItems.add(new CategoriesRowItem(R.drawable.test_tube_52, "Science"));
+        rowItems.add(new CategoriesRowItem(R.drawable.conference_48, "Social Studies"));
+        rowItems.add(new CategoriesRowItem(R.drawable.literature_52, "English/Language Arts"));
+        rowItems.add(new CategoriesRowItem(R.drawable.university_52, "Fine Arts"));
+        rowItems.add(new CategoriesRowItem(R.drawable.ic_work_black_48dp, "Business Applications"));
+        rowItems.add(new CategoriesRowItem(R.drawable.ic_phonelink_black_48dp, "Technology"));
     }
 
 

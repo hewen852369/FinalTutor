@@ -14,4 +14,6 @@
 
     <dimen name="categories_name_text_size">20sp</dimen>
     <dimen name="tutor_details_name_text_size">22sp</dimen>
+    <dimen name="category_list_view_top_margin">16dp</dimen>
+    <dimen name="list_padding">8dp</dimen>
 </resources>

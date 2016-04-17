@@ -12,17 +12,17 @@ import com.example.wen.tutorwithparse.R;
 /**
  * Created by Benson on 4/14/2016.
  */
-public class CustomAdapter extends ArrayAdapter<String> {
+public class SubcategoryAdapter extends ArrayAdapter<String> {
 
-    public CustomAdapter(Context context, String[] itemName) {
-        super(context, R.layout.custom_row, itemName);
+    public SubcategoryAdapter(Context context, String[] itemName) {
+        super(context, R.layout.subcategories_row, itemName);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater myInflater = LayoutInflater.from(getContext());
-        View customView = myInflater.inflate(R.layout.custom_row, parent, false); //set it to false if not to inflate to parent
+        View customView = myInflater.inflate(R.layout.subcategories_row, parent, false); //set it to false if not to inflate to parent
 
         String singleItem = getItem(position);
         TextView myText = (TextView) customView.findViewById(R.id.myText);

@@ -4,15 +4,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wen.tutorwithparse.Models.Tutor;
 
 import java.io.Serializable;
 
 public class TutorDetailsActivity extends AppCompatActivity implements Serializable {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +29,38 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         TextView tvBio = (TextView) findViewById(R.id.tv_bio);
 
         ImageView andyTheAndroid = (ImageView) findViewById(R.id.tutor_pic);
+        ImageButton imageCallButton = (ImageButton) findViewById(R.id.imageCallButton);
+        ImageButton imageTextButton = (ImageButton) findViewById(R.id.imageTextButton);
+        ImageButton imageEmailButton = (ImageButton) findViewById(R.id.imageEmailButton);
 
         tvName.setText(tutor.getName());
         tvSubject.setText(tutor.getSubject());
         tvNumStudent.setText(String.valueOf(tutor.getNumOfStudents()));
         tvBio.setText(tutor.getMessage());
 
+        imageCallButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(TutorDetailsActivity.this, "Phone", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imageTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(TutorDetailsActivity.this, "Text", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imageEmailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(TutorDetailsActivity.this, "Email", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         andyTheAndroid.setImageResource(R.drawable.ic_person_black_48dp);
+
 
     }
 

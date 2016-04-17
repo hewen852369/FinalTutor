@@ -10,25 +10,23 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.example.wen.tutorwithparse.Adapters.CustomAdapter;
+import com.example.wen.tutorwithparse.Adapters.SubcategoryAdapter;
 
 public class SubcategoriesActivity extends AppCompatActivity {
 
     private String[] subcategory;
     private String categoryName;
-    Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subcategories);
 
-        extras = getIntent().getExtras();
-        categoryName = extras.getString("Category");
+        categoryName = getIntent().getExtras().getString("Category");
 
         getSubcategoryList(categoryName);
 
-        ListAdapter myAdapter = new CustomAdapter(this, subcategory);
+        ListAdapter myAdapter = new SubcategoryAdapter(this, subcategory);
 
         ListView categoryListView = (ListView) findViewById(R.id.subcategoryListView);
         categoryListView.setAdapter(myAdapter);

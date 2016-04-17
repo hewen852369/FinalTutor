@@ -10,6 +10,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/myText"
-        android:layout_margin="10dp" />
+        android:layout_margin="16dp" />
 
 </LinearLayout>

@@ -116,11 +116,13 @@
             android:background="@color/card_divider" />
 
         <!-- User Actions -->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/yak_action_margin">
+            android:padding="@dimen/yak_action_margin"
+            android:weightSum="1"
+            android:id="@+id/...">
 
             <RatingBar
                 android:layout_width="wrap_content"
@@ -128,9 +130,48 @@
                 style="?android:attr/ratingBarStyleSmall"
                 android:id="@+id/tutorRatingBar"
                 android:stepSize="1"
-                android:layout_margin="5dp" />
+                android:layout_margin="5dp"
+                android:layout_weight="1.76" />
 
-        </LinearLayout>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageCallButton"
+                android:src="@drawable/ic_phone_black_24dp"
+                android:background="@color/cardview_light_background"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imageTextButton"
+                android:layout_toStartOf="@+id/imageTextButton"
+                android:layout_marginRight="16dp"
+                android:baselineAlignBottom="false" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageTextButton"
+                android:src="@drawable/ic_message_black_24dp"
+                android:background="@color/cardview_light_background"
+                android:clickable="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imageEmailButton"
+                android:layout_toStartOf="@+id/imageEmailButton"
+                android:layout_marginRight="16dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageEmailButton"
+                android:src="@drawable/ic_email_black_24dp"
+                android:background="@color/cardview_light_background"
+                android:clickable="true"
+                android:baselineAlignBottom="false"
+                android:layout_alignTop="@+id/imageTextButton"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="8dp" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
