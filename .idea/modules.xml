@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FinalTutor.iml" filepath="$PROJECT_DIR$/FinalTutor.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TutorWithParse.iml" filepath="$PROJECT_DIR$/TutorWithParse.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

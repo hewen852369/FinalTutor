@@ -10,7 +10,7 @@
     <string name="title_activity_location">LocationActivity</string>
     <string name="title_activity_categories">Categories</string>
 
-    <string name="title_activity_refine_search">Refine Search</string>
+    <string name="title_activity_refine_search">Filter Search</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_subcategories">Subcategories</string>
     <string name="title_activity_tutor_list">Tutor List</string>

@@ -11,17 +11,25 @@ public class Tutor implements Serializable {
     private String message;
     private String subject;
     private int numOfStudents;
+    private String phoneNumber;
+    private String eMail;
 
-    public Tutor(String name, String subject, int numOfStudents, String message) {
+    public Tutor(String name, String subject, int numOfStudents, String message, String phoneNumber, String eMail) {
         this.message = message;
         this.numOfStudents = numOfStudents;
         this.name = name;
         this.subject = subject;
+        this.phoneNumber = phoneNumber;
+        this.eMail = eMail;
     }
 
     public Tutor getTutor() {
         return tutor;
     }
+
+    public String getPhoneNumber(){return phoneNumber;}
+
+    public String geteMail(){return eMail;};
 
     public String getMessage() {
         return message;

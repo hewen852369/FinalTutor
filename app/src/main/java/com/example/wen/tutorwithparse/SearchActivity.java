@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -172,9 +173,8 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                             listItems.add(temp);
                             Log.d("text", temp);
                             if (type.equals("tutor")) {
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!"));
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!"));
-                            }
+                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", "1234567890", ArrObj.get(i).getString("Name")+"@gmail.com"));
+                                }
 
 
                         }
@@ -196,6 +196,17 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                         ListAdapter myAdapter = new TutorListAdapter(SearchActivity.this, tutorList);
                         ListView categoryListView = (ListView) findViewById(R.id.tutorListView1);
                         categoryListView.setAdapter(myAdapter);
+
+
+                        categoryListView.setOnItemClickListener(
+                                new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Tutor t = (Tutor) parent.getItemAtPosition(position);
+                                        goToDetails(t);
+                                    }
+                                }
+                        );
                     }
 
                 } else {
@@ -215,15 +226,23 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
 
 
 
+    public void goToDetails(Tutor tutor) {
+        Intent details = new Intent(this, TutorDetailsActivity.class);
+        details.putExtra("Tutor", tutor);
+        startActivity(details);
+    }
+
+
+
+
 
 
     public void refineSearchClick(View v)
     {
-        //if(v.getId()==R.id.Bsignup)
-        {
-            Intent i = new Intent(SearchActivity.this,RefineSearch.class);
-            startActivity(i);
-        }
+        finish();
+        Intent i = new Intent(SearchActivity.this,RefineSearch.class);
+        startActivity(i);
+
     }
 
 

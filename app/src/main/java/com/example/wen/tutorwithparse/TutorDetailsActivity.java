@@ -1,5 +1,7 @@
 package com.example.wen.tutorwithparse;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -38,24 +40,33 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         tvNumStudent.setText(String.valueOf(tutor.getNumOfStudents()));
         tvBio.setText(tutor.getMessage());
 
+
+        final String tutorPhone = tutor.getPhoneNumber();
+        final String eMailAddress = tutor.geteMail();
+        final String tutorName = tutor.getName();
+
+
         imageCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(TutorDetailsActivity.this, "Phone", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(TutorDetailsActivity.this, "Phone", Toast.LENGTH_SHORT).show();
+                placeCall(tutorPhone);
             }
         });
 
         imageTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(TutorDetailsActivity.this, "Text", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(TutorDetailsActivity.this, "Text", Toast.LENGTH_SHORT).show();
+                sendText(tutorPhone, tutorName);
             }
         });
 
         imageEmailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(TutorDetailsActivity.this, "Email", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(TutorDetailsActivity.this, "Email", Toast.LENGTH_SHORT).show();
+                sendEmail(eMailAddress, tutorName);
             }
         });
 
@@ -84,5 +95,33 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    public void placeCall(String phone){
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + phone));
+        startActivity(callIntent);
+
+    }
+
+    public void sendText(String phone, String name){
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.setData(Uri.parse("sms:" + phone));
+        sendIntent.putExtra("sms_body", "Hey " + name + ", I found you on the tutoring app!");
+        sendIntent.setType("vnd.android-dir/mms-sms");
+
+        startActivity(sendIntent);
+
+    }
+
+    public void sendEmail(String eMailAddress, String name){
+        Intent eMail = new Intent(Intent.ACTION_SEND);
+        eMail.putExtra(Intent.EXTRA_EMAIL, eMailAddress);
+        eMail.putExtra(Intent.EXTRA_SUBJECT, "Tutoring Inquiry");
+        eMail.putExtra(Intent.EXTRA_TEXT, "Hey " +name+ ", I found you on the tutoring app!");
+        eMail.setType("message/rfc822");
+        startActivity(Intent.createChooser(eMail, "Choose an Email client: "));
     }
 }

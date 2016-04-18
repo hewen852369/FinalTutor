@@ -60,37 +60,37 @@ public class TutorListActivity extends AppCompatActivity implements Serializable
     private void getTutorNames(String name) {
         switch (name) {
             case "Math":
-                tutorList.add(new Tutor("Jeff", "Math", 2, "Hey!"));
-                tutorList.add(new Tutor("Jerry", "Math", 2, "Suh dude"));
-                tutorList.add(new Tutor("Chris", "Math", 1, "lolwut?"));
-                tutorList.add(new Tutor("David", "Math", 2, "What up boi?"));
-                tutorList.add(new Tutor("Zoe", "Math", 0, "WHATS 9 + 10?                21?"));
-                tutorList.add(new Tutor("John", "Math", 1, "I forgot how to breathe                  ._."));
-                tutorList.add(new Tutor("Steve", "Math", 2, "What would you do-oo-oo for a Klondike bar?"));
-                tutorList.add(new Tutor("Rachel", "Math", 4, "Ba-dum-tissssss"));
+                tutorList.add(new Tutor("Jeff", "Math", 2, "Hey!", "1234567890", "jeff@gmail.com"));
+                tutorList.add(new Tutor("Jerry", "Math", 2, "Suh dude", "1234567890", "Jerry@gmail.com"));
+                tutorList.add(new Tutor("Chris", "Math", 1, "lolwut?", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("David", "Math", 2, "What up boi?", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("Zoe", "Math", 0, "WHATS 9 + 10?                21?", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("John", "Math", 1, "I forgot how to breathe                  ._.", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("Steve", "Math", 2, "What would you do-oo-oo for a Klondike bar?", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("Rachel", "Math", 4, "Ba-dum-tissssss", "1234567890", "chris@gmail.com"));
                 break;
             case "Science":
-                tutorList.add(new Tutor("Talia", "Science", 1, "Word!"));
-                tutorList.add(new Tutor("Sarah", "Science", 1, "DAAAAANNNNNNGGGGG!!!!!!!!"));
+                tutorList.add(new Tutor("Talia", "Science", 1, "Word!", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("Sarah", "Science", 1, "DAAAAANNNNNNGGGGG!!!!!!!!", "1234567890", "chris@gmail.com"));
                 break;
             case "Social Studies":
-                tutorList.add(new Tutor("Charles", "Social Studies", 0, "Cool"));
+                tutorList.add(new Tutor("Charles", "Social Studies", 0, "Cool", "1234567890", "chris@gmail.com"));
                 break;
             case "English/Language Arts":
-                tutorList.add(new Tutor("Quincy", "English", 0, "BRUHHHH"));
+                tutorList.add(new Tutor("Quincy", "English", 0, "BRUHHHH", "1234567890", "chris@gmail.com"));
                 break;
             case "Fine Arts":
-                tutorList.add(new Tutor("Jane", "Fine Arts", 2, "Think out side the box"));
-                tutorList.add(new Tutor("Rachel", "Fine Arts", 0, "LOL"));
+                tutorList.add(new Tutor("Jane", "Fine Arts", 2, "Think out side the box", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("Rachel", "Fine Arts", 0, "LOL", "1234567890", "chris@gmail.com"));
                 break;
             case "Business Applications":
-                tutorList.add(new Tutor("Stanley", "Business Applications", 3, "plssss"));
-                tutorList.add(new Tutor("Richard", "Business Applications", 3, "Can I has cheezburger"));
-                tutorList.add(new Tutor("Steve", "Business Applications", 3, "Best App EVER!!!"));
+                tutorList.add(new Tutor("Stanley", "Business Applications", 3, "plssss", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("Richard", "Business Applications", 3, "Can I has cheezburger", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("Steve", "Business Applications", 3, "Best App EVER!!!", "1234567890", "chris@gmail.com"));
                 break;
             case "Technology":
-                tutorList.add(new Tutor("JOHN CENA", "Technology", 2, "DUN DUN DUN DUUUUNNNNN"));
-                tutorList.add(new Tutor("Doge", "Technology", 2, "MUCH DESIGN! WOW!"));
+                tutorList.add(new Tutor("JOHN CENA", "Technology", 2, "DUN DUN DUN DUUUUNNNNN", "1234567890", "chris@gmail.com"));
+                tutorList.add(new Tutor("Doge", "Technology", 2, "MUCH DESIGN! WOW!", "1234567890", "chris@gmail.com"));
                 break;
             default:
                 Toast.makeText(this, "NO TUTORS!!!!", Toast.LENGTH_SHORT).show();
