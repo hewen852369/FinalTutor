@@ -173,7 +173,7 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                             listItems.add(temp);
                             Log.d("text", temp);
                             if (type.equals("tutor")) {
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", "1234567890", ArrObj.get(i).getString("Name")+"@gmail.com"));
+                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name")+"@gmail.com"));
                                 }
 
 

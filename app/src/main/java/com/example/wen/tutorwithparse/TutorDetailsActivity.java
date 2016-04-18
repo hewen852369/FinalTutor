@@ -109,6 +109,7 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
     public void sendText(String phone, String name){
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
         sendIntent.setData(Uri.parse("sms:" + phone));
+        sendIntent.putExtra("address", new String(phone));
         sendIntent.putExtra("sms_body", "Hey " + name + ", I found you on the tutoring app!");
         sendIntent.setType("vnd.android-dir/mms-sms");
 
@@ -118,7 +119,8 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
 
     public void sendEmail(String eMailAddress, String name){
         Intent eMail = new Intent(Intent.ACTION_SEND);
-        eMail.putExtra(Intent.EXTRA_EMAIL, eMailAddress);
+        //eMail.putExtra(Intent.EXTRA_EMAIL, eMailAddress);
+        eMail.putExtra(Intent.EXTRA_EMAIL  , new String[]{eMailAddress});
         eMail.putExtra(Intent.EXTRA_SUBJECT, "Tutoring Inquiry");
         eMail.putExtra(Intent.EXTRA_TEXT, "Hey " +name+ ", I found you on the tutoring app!");
         eMail.setType("message/rfc822");
