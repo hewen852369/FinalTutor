@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                             ParseObject obj = list.get(0);
                             if (obj.getString("Password").equals(password)) {
                                 i.putExtra("Username", username);
+                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(i);
 
                             }

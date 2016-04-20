@@ -6,7 +6,7 @@
     <string name="emptystring" />
     <string name="title_activity_student_sign_up">StudentSignUpActivity</string>
     <string name="title_activity_tutor_sign_up">TutorSignUpActivity</string>
-    <string name="title_activity_search">Search Activity</string>
+    <string name="title_activity_search">Search</string>
     <string name="title_activity_location">LocationActivity</string>
     <string name="title_activity_categories">Categories</string>
 
@@ -16,4 +16,5 @@
     <string name="title_activity_tutor_list">Tutor List</string>
     <string name="title_activity_tutor_details">Tutor Details</string>
     <string name="title_activity_communication">CommunicationActivity</string>
+    <string name="title_activity_refined_search_list">Search Activity</string>
 </resources>

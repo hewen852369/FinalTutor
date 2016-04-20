@@ -2,134 +2,99 @@ package com.example.wen.tutorwithparse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
-import android.widget.Toast;
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.ListView;
+
 import com.example.wen.tutorwithparse.Adapters.TutorListAdapter;
 import com.example.wen.tutorwithparse.Models.Tutor;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class RefinedSearchList extends AppCompatActivity {
 
 
-public class SearchActivity extends AppCompatActivity implements Serializable {
-    String[] items;
-
-    ArrayList<String> listItems = new ArrayList<>();
-    ArrayAdapter<String> adapter;
-    ListView listView;
-    EditText editText;
-    String memberID;
-    String password;
-    ArrayList<ParseObject> ArrObj;
-    List<ParseObject> ArrObj1;
-    ParseObject p;
 
 
     private ArrayList<Tutor> tutorList;
+    ArrayList<String> listItems = new ArrayList<>();
+    ArrayList<ParseObject> ArrObj;
+    ParseObject p;
+    String name;
+    String subject;
 
-    protected void  onCreate(Bundle savedInstanceState) {
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_tutor_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         ArrObj = new ArrayList<ParseObject>();
-        initList();
-        /*editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().equals("")) {
-                    initList();
-                } else {
-                    searchItem(s.toString());
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });*/
-
+        name = getIntent().getStringExtra("Name");
+        subject = getIntent().getStringExtra("Subject");
+        Log.d("name from oncreate:" , "name");
+        refineSearch();
 
 
 
     }
 
-    public void searchItem(String textToSearch){
-        for(String item:items){
-            if(!item.contains(textToSearch)){
-                listItems.remove(item);
-            }
-        }
-
-        adapter.notifyDataSetChanged();
-    }
 
 
 
 
-    public void initList(){
+    public void refineSearch(){
 
 
         ParseQuery<ParseObject> query = new ParseQuery("Members");
-        //query.orderByAscending("MemberID");
-        //query.whereNotEqualTo("MemberID", "Michael Yabuti");
-        //query.whereExists("MemberID");
-
-        //query.whereEqualTo("MemberID", "tutor123");
-        //Toast password_check = Toast.makeText(this,"Search the database",Toast.LENGTH_SHORT);
-
+        query.whereEqualTo("UserType", "tutor");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> userList, ParseException e) {
-                //dlg.dismiss();
-                //Log.d("klakla", "get: " + e + userList.size());
                 tutorList = new ArrayList<>();
                 if (e == null) {
                     if (userList.size() > 0) {
                         String temp;
                         String type;
                         for (int i = 0; i < userList.size(); i++) {
-
-
                             p = userList.get(i);
                             ArrObj.add(p);
                             Log.d("MemberFromParse", "MemberID:" + ArrObj.get(i).getString("MemberID"));
-                            Log.d("Sizeof ArrObj", "M" + ArrObj.size());
-
-                            //items[i] =ArrObj.get(i).getString("MemberID");
-                            temp = ArrObj.get(i).getString("MemberID") + "\n" + ArrObj.get(i).getString("Name");
-                            //listItems.add(ArrObj.get(i).getString("MemberID"));
-                            type = ArrObj.get(i).getString("UserType");
-
-                            listItems.add(temp);
+                            temp = ArrObj.get(i).getString("Name");
+                            type = ArrObj.get(i).getString("Subject");
+                            Log.d("subject", subject + " = " + type);
+                            Log.d("name", name + " = " + temp);
                             Log.d("text", temp);
-                            if (type.equals("tutor")) {
+                            if ("".equals(name) && type.equals(subject)) {
+                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
+                            }
+                            else if (temp.equals(name) && type.equals(subject)) {
+                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
+                            }
+                            else if("".equals(subject) && temp.equals(name)){
                                 tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
                             }
 
 
+
                         }
-                        ListAdapter myAdapter = new TutorListAdapter(SearchActivity.this, tutorList);
+                        ListAdapter myAdapter = new TutorListAdapter(RefinedSearchList.this, tutorList);
                         ListView categoryListView = (ListView) findViewById(R.id.tutorListView1);
                         categoryListView.setAdapter(myAdapter);
 
@@ -157,7 +122,6 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
     }
 
 
-
     public void goToDetails(Tutor tutor) {
         Intent details = new Intent(this, TutorDetailsActivity.class);
         details.putExtra("Tutor", tutor);
@@ -165,17 +129,12 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
     }
 
 
+
     public void refineSearchClick(View v)
     {
+        Intent i = new Intent(RefinedSearchList.this,RefineSearch.class);
         finish();
-        Intent i = new Intent(SearchActivity.this,RefineSearch.class);
         startActivity(i);
     }
-
-
-
-
-
-
 
 }

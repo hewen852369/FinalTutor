@@ -17,9 +17,10 @@
     android:weightSum="1">
     <EditText
         android:id="@+id/txtsearch"
-        android:layout_width="339dp"
-        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:hint="Search Tutor Name"
+        android:inputType="text"
         android:gravity="center"
         android:layout_weight="0.17" />
 
@@ -28,53 +29,62 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:id="@+id/radioGroup"
         android:layout_weight="0.65">
 
         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="Math"
-            android:id="@+id/radioButton1"
-            android:layout_weight="0.17" />
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Math"
+        android:id="@+id/mathButton"
+        android:layout_weight="0.17"
+        android:onClick="searchMath"
+        />
 
         <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Science"
-        android:id="@+id/radioButton2"
-        android:layout_weight="0.17" />
+        android:id="@+id/scienceButton"
+        android:layout_weight="0.17"
+        android:onClick="searchScience"/>
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Social Studies"
-        android:id="@+id/radioButton3"
+        android:id="@+id/socialStudiesButton"
+        android:onClick="searchSocialStudies"
         android:layout_weight="0.17" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="English/Language Arts"
-        android:id="@+id/radioButton4"
+        android:id="@+id/englishButton"
+        android:onClick="searchEnglish"
         android:layout_weight="0.17" />
 
         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="Fine Arts"
-            android:id="@+id/radioButton5"
-            android:layout_weight="0.17" />
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Fine Arts"
+        android:id="@+id/artButton"
+        android:onClick="searchArt"
+        android:layout_weight="0.17" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:text="Business Applications"
-            android:id="@+id/radioButton6"
+            android:id="@+id/businessButton"
+            android:onClick="searchBusiness"
             android:layout_weight="0.17" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:text="Technology"
-            android:id="@+id/radioButton7"
+            android:id="@+id/technologyButton"
+            android:onClick="searchTechnology"
             android:layout_weight="0.17" />
     </RadioGroup>
     <Button
@@ -83,6 +93,7 @@
         android:text="Refine Search"
         android:id="@+id/refineSearch"
         android:layout_alignParentBottom="true"
+        android:onClick="refineClick"
         />
 
 </LinearLayout>
