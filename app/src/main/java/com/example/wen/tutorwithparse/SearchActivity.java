@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.wen.tutorwithparse.Adapters.SearchTutorAdapter;
+import com.example.wen.tutorwithparse.Adapters.TutorListAdapter;
 import com.example.wen.tutorwithparse.Models.Tutor;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -47,7 +48,8 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
 
 
     public void initList(){
-        ParseQuery<ParseObject> query = new ParseQuery("Members");
+        ParseQuery<ParseObject> query = new ParseQuery("TutorsSubjects");
+        query.include("members");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> userList, ParseException e) {
@@ -56,29 +58,28 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                     if (userList.size() > 0) {
                         String temp;
                         String type;
+                        ParseObject tutor;
+                        ParseObject member;
                         for (int i = 0; i < userList.size(); i++) {
-                            p = userList.get(i);
-                            ArrObj.add(p);
+                            tutor = userList.get(i);
+                            member = userList.get(i).getParseObject("members");
 
-                            Log.d("MemberFromParse", "MemberID:" + ArrObj.get(i).getString("MemberID"));
-                            Log.d("Sizeof ArrObj", "M" + ArrObj.size());
 
-                            //Retrieves Member id and type of user
-                            temp = ArrObj.get(i).getString("MemberID") + "\n" + ArrObj.get(i).getString("Name");
-                            type = ArrObj.get(i).getString("UserType");
 
-                            listItems.add(temp);
-                            Log.d("text", temp);
-                            if (type.equals("tutor")) {
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"),
-                                        ArrObj.get(i).getString("Sub_Category"), 2, "Hey!",
-                                        ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Email"),
-                                        ArrObj.get(i).getString("Address"), ArrObj.get(i).getInt("Price")));
-                            }
+                            tutorList.add(new Tutor(member.getString("Name"),
+                                    tutor.getString("Subject"),
+                                    tutor.getString("Subcategory"),
+                                    tutor.getInt("numStudents"),
+                                    tutor.getString("Message"),
+                                    member.getString("PhoneNumber"),
+                                    member.getString("Email"),
+                                    member.getString("Address"),
+                                    tutor.getInt("Price")
+                                    ));
 
 
                         }
-                        ListAdapter myAdapter = new SearchTutorAdapter(SearchActivity.this, tutorList);
+                        ListAdapter myAdapter = new TutorListAdapter(SearchActivity.this, tutorList);
                         ListView categoryListView = (ListView) findViewById(R.id.tutorListView1);
                         categoryListView.setAdapter(myAdapter);
 

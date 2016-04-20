@@ -72,31 +72,64 @@ public class RefinedSearchList extends AppCompatActivity {
                     if (userList.size() > 0) {
                         String temp;
                         String type;
-                        ParseObject members;    //retrieves a Member's attributes/data
+                        ParseObject tutor;
+                        ParseObject member;
                         for (int i = 0; i < userList.size(); i++) {
-                            p = userList.get(i);
-                            members = userList.get(i);
-                            ArrObj.add(p);
-                            Log.d("MemberFromParse", "MemberID:" + ArrObj.get(i).getString("MemberID"));
-                            temp = members.getString("Name");
-                            type = ArrObj.get(i).getString("Subject");
-                            Log.d("subject", subject + " = " + type);
-                            Log.d("name", name + " = " + temp);
-                            Log.d("text", temp);
-                            if ("".equals(name) && type.equals(subject)) {
-                                tutorList.add(new Tutor(members.getString("Name"), ArrObj.get(i).getString("Subject"), ArrObj.get(i).getString("Subcategory"), ArrObj.get(i).getInt("numStudents"), ArrObj.get(i).getString("Message"), members.getString("PhoneNumber"), members.getString("Email"), members.getString("Address"), ArrObj.get(i).getInt("Price")));
+                            tutor = userList.get(i);
+                            member = userList.get(i).getParseObject("members");
+
+                            temp = member.getString("Name");
+                            type = tutor.getString("Subject");
+
+                            Log.d("name:", temp + " = " + name);
+                            Log.d("type:", type + " = " +subject);
+
+                            if ("".equals(subject) && "".equals(name)) {
+                                tutorList.add(new Tutor(member.getString("Name"),
+                                        tutor.getString("Subject"),
+                                        tutor.getString("Subcategory"),
+                                        tutor.getInt("numStudents"),
+                                        tutor.getString("Message"),
+                                        member.getString("PhoneNumber"),
+                                        member.getString("Email"),
+                                        member.getString("Address"),
+                                        tutor.getInt("Price")));
                             }
                             else if (temp.equals(name) && type.equals(subject)) {
-                                tutorList.add(new Tutor(members.getString("Name"), ArrObj.get(i).getString("Subject"), ArrObj.get(i).getString("Subcategory"), ArrObj.get(i).getInt("numStudents"), ArrObj.get(i).getString("Message"), members.getString("PhoneNumber"), members.getString("Email"), members.getString("Address"), ArrObj.get(i).getInt("Price")));
+                                tutorList.add(new Tutor(member.getString("Name"),
+                                        tutor.getString("Subject"),
+                                        tutor.getString("Subcategory"),
+                                        tutor.getInt("numStudents"),
+                                        tutor.getString("Message"),
+                                        member.getString("PhoneNumber"),
+                                        member.getString("Email"),
+                                        member.getString("Address"),
+                                        tutor.getInt("Price")));
                             }
                             else if("".equals(subject) && temp.equals(name)){
-                                tutorList.add(new Tutor(members.getString("Name"), ArrObj.get(i).getString("Subject"), ArrObj.get(i).getString("Subcategory"), ArrObj.get(i).getInt("numStudents"), ArrObj.get(i).getString("Message"), members.getString("PhoneNumber"), members.getString("Email"), members.getString("Address"), ArrObj.get(i).getInt("Price")));
+                                tutorList.add(new Tutor(member.getString("Name"),
+                                        tutor.getString("Subject"),
+                                        tutor.getString("Subcategory"),
+                                        tutor.getInt("numStudents"),
+                                        tutor.getString("Message"),
+                                        member.getString("PhoneNumber"),
+                                        member.getString("Email"),
+                                        member.getString("Address"),
+                                        tutor.getInt("Price")));
                             }
-                            else if("".equals(subject) && "".equals(name)){
-                                tutorList.add(new Tutor(members.getString("Name"), ArrObj.get(i).getString("Subject"), ArrObj.get(i).getString("Subcategory"), ArrObj.get(i).getInt("numStudents"), ArrObj.get(i).getString("Message"), members.getString("PhoneNumber"), members.getString("Email"), members.getString("Address"), ArrObj.get(i).getInt("Price")));
+                            else if ("".equals(name) && type.equals(subject)){
+                                tutorList.add(new Tutor(member.getString("Name"),
+                                        tutor.getString("Subject"),
+                                        tutor.getString("Subcategory"),
+                                        tutor.getInt("numStudents"),
+                                        tutor.getString("Message"),
+                                        member.getString("PhoneNumber"),
+                                        member.getString("Email"),
+                                        member.getString("Address"),
+                                        tutor.getInt("Price")));
                             }
                         }
-                        ListAdapter myAdapter = new SearchTutorAdapter(RefinedSearchList.this, tutorList);
+                        ListAdapter myAdapter = new TutorListAdapter(RefinedSearchList.this, tutorList);
                         ListView categoryListView = (ListView) findViewById(R.id.tutorListView1);
                         categoryListView.setAdapter(myAdapter);
 
