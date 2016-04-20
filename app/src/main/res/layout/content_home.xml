@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Welcome,"
+        android:text="Welcome, "
         android:id="@+id/textView4"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -46,6 +46,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:text="Search"
+        android:layout_marginTop="10dp"
         android:id="@+id/SearchButton"
         android:layout_below="@+id/btn_category"
         android:layout_centerHorizontal="true"
@@ -53,27 +54,16 @@
         android:onClick="searchClick"
         />
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:text="Communication"
-        android:id="@+id/CommunicationButton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/SearchButton"
-        android:onClick="communicationClick"/>
-
-
-
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Location"
         android:id="@+id/Blocation"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="55dp"
+        android:layout_below="@+id/SearchButton"
+        android:layout_marginTop="10dp"
         android:onClick="locationClick"
+
         android:layout_alignLeft="@+id/btn_category"
         android:layout_alignStart="@+id/btn_category"
         android:layout_alignRight="@+id/btn_category"

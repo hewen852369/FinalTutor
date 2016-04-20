@@ -4,20 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListAdapter;
-import android.widget.Toast;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.wen.tutorwithparse.Adapters.TutorListAdapter;
+
+import com.example.wen.tutorwithparse.Adapters.SearchTutorAdapter;
 import com.example.wen.tutorwithparse.Models.Tutor;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -31,12 +27,7 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
 
     ArrayList<String> listItems = new ArrayList<>();
     ArrayAdapter<String> adapter;
-    ListView listView;
-    EditText editText;
-    String memberID;
-    String password;
     ArrayList<ParseObject> ArrObj;
-    List<ParseObject> ArrObj1;
     ParseObject p;
 
 
@@ -48,77 +39,32 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         ArrObj = new ArrayList<ParseObject>();
         initList();
-        /*editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().equals("")) {
-                    initList();
-                } else {
-                    searchItem(s.toString());
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });*/
-
-
-
 
     }
 
-    public void searchItem(String textToSearch){
-        for(String item:items){
-            if(!item.contains(textToSearch)){
-                listItems.remove(item);
-            }
-        }
-
-        adapter.notifyDataSetChanged();
-    }
 
 
 
 
     public void initList(){
-
-
         ParseQuery<ParseObject> query = new ParseQuery("Members");
-        //query.orderByAscending("MemberID");
-        //query.whereNotEqualTo("MemberID", "Michael Yabuti");
-        //query.whereExists("MemberID");
-
-        //query.whereEqualTo("MemberID", "tutor123");
-        //Toast password_check = Toast.makeText(this,"Search the database",Toast.LENGTH_SHORT);
-
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> userList, ParseException e) {
-                //dlg.dismiss();
-                //Log.d("klakla", "get: " + e + userList.size());
                 tutorList = new ArrayList<>();
                 if (e == null) {
                     if (userList.size() > 0) {
                         String temp;
                         String type;
                         for (int i = 0; i < userList.size(); i++) {
-
-
                             p = userList.get(i);
                             ArrObj.add(p);
+
                             Log.d("MemberFromParse", "MemberID:" + ArrObj.get(i).getString("MemberID"));
                             Log.d("Sizeof ArrObj", "M" + ArrObj.size());
 
-                            //items[i] =ArrObj.get(i).getString("MemberID");
+                            //Retrieves Member id and type of user
                             temp = ArrObj.get(i).getString("MemberID") + "\n" + ArrObj.get(i).getString("Name");
-                            //listItems.add(ArrObj.get(i).getString("MemberID"));
                             type = ArrObj.get(i).getString("UserType");
 
                             listItems.add(temp);
@@ -129,7 +75,7 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
 
 
                         }
-                        ListAdapter myAdapter = new TutorListAdapter(SearchActivity.this, tutorList);
+                        ListAdapter myAdapter = new SearchTutorAdapter(SearchActivity.this, tutorList);
                         ListView categoryListView = (ListView) findViewById(R.id.tutorListView1);
                         categoryListView.setAdapter(myAdapter);
 
@@ -148,8 +94,6 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                 } else {
                     Log.d("score", "Error: " + e.getMessage());
                 }
-
-
             }
 
         });
@@ -164,18 +108,12 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
         startActivity(details);
     }
 
-
     public void refineSearchClick(View v)
     {
         finish();
         Intent i = new Intent(SearchActivity.this,RefineSearch.class);
         startActivity(i);
     }
-
-
-
-
-
 
 
 }

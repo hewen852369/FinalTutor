@@ -62,9 +62,6 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public void communicationClick(View v){
-        Intent i = new Intent(HomeActivity.this,CommunicationActivity.class);
-        startActivity(i);
-    }
+
 
 }

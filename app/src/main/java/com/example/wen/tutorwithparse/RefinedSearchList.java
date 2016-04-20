@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.example.wen.tutorwithparse.Adapters.SearchTutorAdapter;
 import com.example.wen.tutorwithparse.Adapters.TutorListAdapter;
 import com.example.wen.tutorwithparse.Models.Tutor;
 import com.parse.FindCallback;
@@ -90,11 +91,14 @@ public class RefinedSearchList extends AppCompatActivity {
                             else if("".equals(subject) && temp.equals(name)){
                                 tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
                             }
+                            else if("".equals(subject) && "".equals(name)){
+                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
+                            }
 
 
 
                         }
-                        ListAdapter myAdapter = new TutorListAdapter(RefinedSearchList.this, tutorList);
+                        ListAdapter myAdapter = new SearchTutorAdapter(RefinedSearchList.this, tutorList);
                         ListView categoryListView = (ListView) findViewById(R.id.tutorListView1);
                         categoryListView.setAdapter(myAdapter);
 
