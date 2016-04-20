@@ -13,14 +13,21 @@ public class Tutor implements Serializable {
     private int numOfStudents;
     private String phoneNumber;
     private String eMail;
+    private String subcategory;
+    private String address;
+    private int price;
 
-    public Tutor(String name, String subject, int numOfStudents, String message, String phoneNumber, String eMail) {
+    public Tutor(String name, String subject, String subcategory, int numOfStudents, String message,
+                 String phoneNumber, String eMail, String Address, int price) {
         this.message = message;
         this.numOfStudents = numOfStudents;
         this.name = name;
         this.subject = subject;
+        this.subcategory = subcategory;
         this.phoneNumber = phoneNumber;
         this.eMail = eMail;
+        this.price = price;
+        address = Address;
     }
 
     public Tutor getTutor() {
@@ -65,5 +72,37 @@ public class Tutor implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public String getSubcategory() {
+        return subcategory;
+    }
+
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

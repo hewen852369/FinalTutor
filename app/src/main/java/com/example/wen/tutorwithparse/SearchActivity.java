@@ -70,7 +70,10 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                             listItems.add(temp);
                             Log.d("text", temp);
                             if (type.equals("tutor")) {
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
+                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"),
+                                        ArrObj.get(i).getString("Sub_Category"), 2, "Hey!",
+                                        ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Email"),
+                                        ArrObj.get(i).getString("Address"), ArrObj.get(i).getInt("Price")));
                             }
 
 
@@ -94,13 +97,16 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                 } else {
                     Log.d("score", "Error: " + e.getMessage());
                 }
+
+
             }
 
         });
 
+        Log.d("initlist: ", "MemberID !");
+
+
     }
-
-
 
     public void goToDetails(Tutor tutor) {
         Intent details = new Intent(this, TutorDetailsActivity.class);
@@ -114,6 +120,5 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
         Intent i = new Intent(SearchActivity.this,RefineSearch.class);
         startActivity(i);
     }
-
-
+    
 }

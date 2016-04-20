@@ -61,10 +61,9 @@ public class RefinedSearchList extends AppCompatActivity {
 
 
     public void refineSearch(){
+        ParseQuery<ParseObject> query = new ParseQuery<>("TutorsSubjects");   //TutorsSubjects table works for now
+        query.include("members");       //pointer to Member's table
 
-
-        ParseQuery<ParseObject> query = new ParseQuery("Members");
-        query.whereEqualTo("UserType", "tutor");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> userList, ParseException e) {
@@ -73,30 +72,29 @@ public class RefinedSearchList extends AppCompatActivity {
                     if (userList.size() > 0) {
                         String temp;
                         String type;
+                        ParseObject members;    //retrieves a Member's attributes/data
                         for (int i = 0; i < userList.size(); i++) {
                             p = userList.get(i);
+                            members = userList.get(i);
                             ArrObj.add(p);
                             Log.d("MemberFromParse", "MemberID:" + ArrObj.get(i).getString("MemberID"));
-                            temp = ArrObj.get(i).getString("Name");
+                            temp = members.getString("Name");
                             type = ArrObj.get(i).getString("Subject");
                             Log.d("subject", subject + " = " + type);
                             Log.d("name", name + " = " + temp);
                             Log.d("text", temp);
                             if ("".equals(name) && type.equals(subject)) {
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
+                                tutorList.add(new Tutor(members.getString("Name"), ArrObj.get(i).getString("Subject"), ArrObj.get(i).getString("Subcategory"), ArrObj.get(i).getInt("numStudents"), ArrObj.get(i).getString("Message"), members.getString("PhoneNumber"), members.getString("Email"), members.getString("Address"), ArrObj.get(i).getInt("Price")));
                             }
                             else if (temp.equals(name) && type.equals(subject)) {
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
+                                tutorList.add(new Tutor(members.getString("Name"), ArrObj.get(i).getString("Subject"), ArrObj.get(i).getString("Subcategory"), ArrObj.get(i).getInt("numStudents"), ArrObj.get(i).getString("Message"), members.getString("PhoneNumber"), members.getString("Email"), members.getString("Address"), ArrObj.get(i).getInt("Price")));
                             }
                             else if("".equals(subject) && temp.equals(name)){
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
+                                tutorList.add(new Tutor(members.getString("Name"), ArrObj.get(i).getString("Subject"), ArrObj.get(i).getString("Subcategory"), ArrObj.get(i).getInt("numStudents"), ArrObj.get(i).getString("Message"), members.getString("PhoneNumber"), members.getString("Email"), members.getString("Address"), ArrObj.get(i).getInt("Price")));
                             }
                             else if("".equals(subject) && "".equals(name)){
-                                tutorList.add(new Tutor(ArrObj.get(i).getString("Name"), ArrObj.get(i).getString("Subject"), 2, "Hey!", ArrObj.get(i).getString("PhoneNumber"), ArrObj.get(i).getString("Name") + "@gmail.com"));
+                                tutorList.add(new Tutor(members.getString("Name"), ArrObj.get(i).getString("Subject"), ArrObj.get(i).getString("Subcategory"), ArrObj.get(i).getInt("numStudents"), ArrObj.get(i).getString("Message"), members.getString("PhoneNumber"), members.getString("Email"), members.getString("Address"), ArrObj.get(i).getInt("Price")));
                             }
-
-
-
                         }
                         ListAdapter myAdapter = new SearchTutorAdapter(RefinedSearchList.this, tutorList);
                         ListView categoryListView = (ListView) findViewById(R.id.tutorListView1);

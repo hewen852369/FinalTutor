@@ -28,11 +28,13 @@ public class TutorListAdapter extends ArrayAdapter<Tutor> {
         View customView = myInflater.inflate(R.layout.tutor_list_row, parent, false); //set it to false if not to inflate to parent
 
         Tutor tutor = getItem(position);
-        TextView myText = (TextView) customView.findViewById(R.id.tv_categoires_name);
-        ImageView andyTheAndroid = (ImageView) customView.findViewById(R.id.tutor_pic);
+        TextView tutorName = (TextView) customView.findViewById(R.id.tv_tutorName);
+        TextView tutorSubCategory = (TextView) customView.findViewById(R.id.tv_tutorSubCategory);
+        ImageView tutorPic = (ImageView) customView.findViewById(R.id.tutor_pic);
 
-        myText.setText(tutor.getName());     //sets the text dynamically
-        andyTheAndroid.setImageResource(R.drawable.ic_person_black_48dp);  //same picture for all...
+        tutorName.setText(tutor.getName());
+        tutorSubCategory.setText(tutor.getSubcategory());
+        tutorPic.setImageResource(R.drawable.ic_person_black_48dp);  //same picture for all...
 
         return customView;
     }

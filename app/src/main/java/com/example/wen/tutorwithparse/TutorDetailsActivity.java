@@ -9,10 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wen.tutorwithparse.Models.Tutor;
+
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 
@@ -27,6 +30,8 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
 
         TextView tvName = (TextView) findViewById(R.id.TVname);
         TextView tvSubject = (TextView) findViewById(R.id.TVsubject);
+        TextView tvAddress = (TextView) findViewById(R.id.tv_tutorAddress);
+        TextView tvPrice = (TextView) findViewById(R.id.tv_tutorPrice);
         TextView tvNumStudent = (TextView) findViewById(R.id.TVnumStudents);
         TextView tvBio = (TextView) findViewById(R.id.tv_bio);
 
@@ -36,15 +41,15 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         ImageButton imageEmailButton = (ImageButton) findViewById(R.id.imageEmailButton);
 
         tvName.setText(tutor.getName());
-        tvSubject.setText(tutor.getSubject());
+        tvSubject.setText(tutor.getSubcategory());
+        tvAddress.setText(tutor.getAddress());
+        tvPrice.setText(String.valueOf(tutor.getPrice()));
         tvNumStudent.setText(String.valueOf(tutor.getNumOfStudents()));
         tvBio.setText(tutor.getMessage());
-
 
         final String tutorPhone = tutor.getPhoneNumber();
         final String eMailAddress = tutor.geteMail();
         final String tutorName = tutor.getName();
-
 
         imageCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +76,6 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         });
 
         andyTheAndroid.setImageResource(R.drawable.ic_person_black_48dp);
-
-
     }
 
     @Override
