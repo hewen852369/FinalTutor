@@ -30,7 +30,7 @@ public class SearchTutorAdapter extends ArrayAdapter<Tutor> {
         TextView tvSubject = (TextView) customView.findViewById(R.id.TVsubject);
         ImageView andyTheAndroid = (ImageView) customView.findViewById(R.id.tutor_pic);
 
-        myText.setText(tutor.getName());     //sets the text dynamically
+        myText.setText(tutor.getName());
         tvSubject.setText(tutor.getSubject());
         andyTheAndroid.setImageResource(R.drawable.ic_person_black_48dp);  //same picture for all...
 
