@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     {
         if (v.getId()==R.id.Breset)
         {
-            Toast.makeText(LoginActivity.this, "Please contact our tam via tutor@support.edu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Please contact our team via tutor@support.edu", Toast.LENGTH_SHORT).show();
         }
     }
 

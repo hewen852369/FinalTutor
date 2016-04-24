@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import java.util.Random;
 
@@ -24,7 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         TextView tv = (TextView)findViewById(R.id.TVusername);
         tv.setText(username);
 
-        Button btnCategory = (Button) findViewById(R.id.btn_category);
+        ImageButton btnCategory = (ImageButton) findViewById(R.id.categoriesButton);
         assert btnCategory != null;     //idk... Android studios told me to do it...
 
         btnCategory.setOnClickListener(new View.OnClickListener() {
@@ -34,12 +35,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        int n=10;
-        getSupportActionBar().setTitle("Tutors");
-        Random randomGenerator=new Random();
-        int randomInt=randomGenerator.nextInt(n);
+        ImageButton btnSearch = (ImageButton) findViewById(R.id.searchButton);
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchClick(v);
+            }
+        });
+
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        //getSupportActionBar().setTitle("Tutors");
     }
 
     public void goToCategories() {
@@ -57,17 +63,5 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(i);
         }
     }
-
-    public void locationClick(View v)
-    {
-        if(v.getId()==R.id.Blocation)
-        {
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://maps.google.com"));
-            startActivity(i);
-        }
-
-    }
-
-
-
+   
 }

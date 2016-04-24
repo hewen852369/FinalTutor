@@ -60,16 +60,12 @@ public class CategoriesActivity extends AppCompatActivity {
 
     public void queryParse() {
         ParseQuery<ParseObject> query = new ParseQuery<>("TutorsSubjects");
-        //query.orderByAscending("MemberID");
-        //query.whereNotEqualTo("MemberID", "Michael Yabuti");
-        //query.whereExists("MemberID");
+
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> userList, ParseException e) {
-                //dlg.dismiss();
-                //Log.d("klakla", "get: " + e + userList.size());
                 if (e == null) {
                     if (userList.size() > 0) {
                         String type;
@@ -129,7 +125,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 rowItems.add(new CategoriesRowItem(R.drawable.ic_phonelink_black_48dp, "Technology"));
                 break;
             default:
-                rowItems.add(new CategoriesRowItem(R.drawable.ic_person_black_48dp, "NO CATEGORIES FOUND!!!!"));
+                rowItems.add(new CategoriesRowItem(R.drawable.ic_person_black_48dp, "Others"));
                 break;
         }
     }
