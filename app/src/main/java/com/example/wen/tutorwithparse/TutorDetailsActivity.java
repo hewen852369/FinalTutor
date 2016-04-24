@@ -8,20 +8,28 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wen.tutorwithparse.Models.ReviewModel;
 import com.example.wen.tutorwithparse.Models.Tutor;
-
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import org.w3c.dom.Text;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.io.Serializable;
 
 public class TutorDetailsActivity extends AppCompatActivity implements Serializable {
-
+    String tutorName;
+    private float ratingstars;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +44,16 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         TextView tvNumStudent = (TextView) findViewById(R.id.TVnumStudents);
         TextView tvBio = (TextView) findViewById(R.id.tv_bio);
 
+        tutorName=tvName.toString();
+
         ImageView andyTheAndroid = (ImageView) findViewById(R.id.tutor_pic);
         ImageButton imageCallButton = (ImageButton) findViewById(R.id.imageCallButton);
         ImageButton imageTextButton = (ImageButton) findViewById(R.id.imageTextButton);
         ImageButton imageEmailButton = (ImageButton) findViewById(R.id.imageEmailButton);
         ImageButton imageLocationButton = (ImageButton) findViewById(R.id.imageLocationButton);
+        Button reviewButton = (Button) findViewById(R.id.Breview);
+        Button viewReviewsButton = (Button) findViewById(R.id.viewReviews);
+        final RatingBar ratingBar = (RatingBar) findViewById(R.id.tutorRatingBar);
 
         tvName.setText(tutor.getName());
         tvSubject.setText(tutor.getSubcategory());
@@ -53,6 +66,32 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         final String eMailAddress = tutor.geteMail();
         final String tutorName = tutor.getName();
         final String address = tutor.getAddress();
+        ratingstars=0;
+        ParseQuery<ParseObject> query = new ParseQuery("Reviews");
+        query.whereEqualTo("tutorPhone", tutorPhone);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> userList, ParseException e) {
+                //reviewList = new ArrayList<>();
+
+                if (e == null) {
+                    if (userList.size() > 0) {
+                        ParseObject review;
+
+                        //ParseObject member;
+                        for (int i = 0; i < userList.size(); i++) {
+                            review = userList.get(i);
+
+                            ratingstars = ratingstars + review.getInt("Stars");
+
+                            //member = userList.get(i).getParseObject("members");
+                        }
+                        ratingstars = ratingstars / userList.size();
+                    }
+                    ratingBar.setRating(ratingstars);
+                }
+            }
+        });
 
         imageCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +122,33 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
             public void onClick(View v) {
                 //Toast.makeText(TutorDetailsActivity.this, "Email", Toast.LENGTH_SHORT).show();
                 locateTutor(address);
+            }
+        });
+
+        reviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(TutorDetailsActivity.this, "Review", Toast.LENGTH_SHORT).show();
+                String username = getIntent().getStringExtra("Username");
+
+                Intent i = new Intent(TutorDetailsActivity.this, ReviewActivity.class);
+                i.putExtra("tutorName", tutorName);
+                i.putExtra("tutorPhone", tutorPhone);
+                i.putExtra("Username", username);
+                startActivity(i);
+            }
+        });
+
+        viewReviewsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(TutorDetailsActivity.this, "View Reviews", Toast.LENGTH_SHORT).show();
+                String username = getIntent().getStringExtra("Username");
+                Intent i = new Intent(TutorDetailsActivity.this, ViewReviewsActivity.class);
+                i.putExtra("tutorName", tutorName);
+                i.putExtra("tutorPhone", tutorPhone);
+                i.putExtra("Username", username);
+                startActivity(i);
             }
         });
 
@@ -145,8 +211,8 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         startActivity(Intent.createChooser(eMail, "Choose an Email client: "));
     }
 
-    public void locateTutor(String address){
-        address.replace(" " , "+");
+    public void locateTutor(String address) {
+        address.replace(" ", "+");
         Log.d("address", address);
         String map = "http://maps.google.co.in/maps?q=" + address;
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));

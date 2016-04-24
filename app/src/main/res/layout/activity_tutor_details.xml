@@ -174,7 +174,8 @@
                 android:layout_height="wrap_content"
                 style="?android:attr/ratingBarStyleSmall"
                 android:id="@+id/tutorRatingBar"
-                android:stepSize="1"
+                android:isIndicator="true"
+                android:numStars="5"
                 android:layout_margin="5dp"
                 android:layout_weight="1.76" />
 
@@ -188,11 +189,10 @@
                 android:src="@drawable/ic_phone_black_24dp"
                 android:background="@color/cardview_light_background"
                 android:clickable="true"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/imageTextButton"
-                android:layout_toStartOf="@+id/imageTextButton"
-                android:layout_marginRight="16dp"
-                android:baselineAlignBottom="false" />
+                android:baselineAlignBottom="false"
+                android:layout_alignBottom="@+id/Breview"
+                android:layout_toRightOf="@+id/Breview"
+                android:layout_toEndOf="@+id/Breview" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -201,10 +201,9 @@
                 android:src="@drawable/ic_message_black_24dp"
                 android:background="@color/cardview_light_background"
                 android:clickable="true"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/imageEmailButton"
-                android:layout_toStartOf="@+id/imageEmailButton"
-                android:layout_marginRight="16dp" />
+                android:layout_alignTop="@+id/imageCallButton"
+                android:layout_toRightOf="@+id/viewReviews"
+                android:layout_toEndOf="@+id/viewReviews" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -215,9 +214,26 @@
                 android:clickable="true"
                 android:baselineAlignBottom="false"
                 android:layout_alignTop="@+id/imageTextButton"
-                android:layout_toLeftOf="@+id/imageLocationButton"
-                android:layout_toStartOf="@+id/imageLocationButton"
-                android:layout_marginRight="8dp" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create/Edit Review"
+                android:id="@+id/Breview"
+                android:layout_below="@+id/viewReviews"
+                android:layout_alignLeft="@+id/tutorRatingBar"
+                android:layout_alignStart="@+id/tutorRatingBar" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Reviews"
+                android:id="@+id/viewReviews"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -227,11 +243,10 @@
                 android:background="@color/cardview_light_background"
                 android:clickable="true"
                 android:baselineAlignBottom="false"
-                android:layout_alignBottom="@+id/imageEmailButton"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
 
-                />
+                android:layout_alignBottom="@+id/viewReviews"
+                android:layout_alignRight="@+id/imageEmailButton"
+                android:layout_alignEnd="@+id/imageEmailButton" />
 
 
 
