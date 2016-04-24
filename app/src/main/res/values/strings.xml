@@ -17,4 +17,6 @@
     <string name="title_activity_tutor_details">Tutor Details</string>
     <string name="title_activity_communication">CommunicationActivity</string>
     <string name="title_activity_refined_search_list">Search Activity</string>
+    <string name="title_activity_review">Search Activity</string>
+    <string name="title_activity_viewreviews">Search Activity</string>
 </resources>

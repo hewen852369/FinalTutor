@@ -47,7 +47,9 @@ public class HomeActivity extends AppCompatActivity {
     {
         //if(v.getId()==R.id.action_settings)
         {
+            String username = getIntent().getStringExtra("Username");
             Intent i = new Intent(HomeActivity.this,SearchActivity.class);
+            i.putExtra("Username", username);
             startActivity(i);
         }
     }
