@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.Random;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -35,7 +36,10 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        int n=10;
         getSupportActionBar().setTitle("Tutors");
+        Random randomGenerator=new Random();
+        int randomInt=randomGenerator.nextInt(n);
     }
 
     public void goToCategories() {
