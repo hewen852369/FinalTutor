@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,7 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         ImageButton imageCallButton = (ImageButton) findViewById(R.id.imageCallButton);
         ImageButton imageTextButton = (ImageButton) findViewById(R.id.imageTextButton);
         ImageButton imageEmailButton = (ImageButton) findViewById(R.id.imageEmailButton);
+        ImageButton imageLocationButton = (ImageButton) findViewById(R.id.imageLocationButton);
 
         tvName.setText(tutor.getName());
         tvSubject.setText(tutor.getSubcategory());
@@ -50,6 +52,7 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         final String tutorPhone = tutor.getPhoneNumber();
         final String eMailAddress = tutor.geteMail();
         final String tutorName = tutor.getName();
+        final String address = tutor.getAddress();
 
         imageCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +75,14 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
             public void onClick(View v) {
                 //Toast.makeText(TutorDetailsActivity.this, "Email", Toast.LENGTH_SHORT).show();
                 sendEmail(eMailAddress, tutorName);
+            }
+        });
+
+        imageLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(TutorDetailsActivity.this, "Email", Toast.LENGTH_SHORT).show();
+                locateTutor(address);
             }
         });
 
@@ -105,8 +116,12 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
     public void placeCall(String phone){
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + phone));
-        startActivity(callIntent);
-
+        try {
+            startActivity(callIntent);
+        }
+        catch(SecurityException e){
+            System.out.println(e);
+        }
     }
 
     public void sendText(String phone, String name){
@@ -123,10 +138,18 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
     public void sendEmail(String eMailAddress, String name){
         Intent eMail = new Intent(Intent.ACTION_SEND);
         //eMail.putExtra(Intent.EXTRA_EMAIL, eMailAddress);
-        eMail.putExtra(Intent.EXTRA_EMAIL  , new String[]{eMailAddress});
+        eMail.putExtra(Intent.EXTRA_EMAIL, new String[]{eMailAddress});
         eMail.putExtra(Intent.EXTRA_SUBJECT, "Tutoring Inquiry");
         eMail.putExtra(Intent.EXTRA_TEXT, "Hey " +name+ ", I found you on the tutoring app!");
         eMail.setType("message/rfc822");
         startActivity(Intent.createChooser(eMail, "Choose an Email client: "));
+    }
+
+    public void locateTutor(String address){
+        address.replace(" " , "+");
+        Log.d("address", address);
+        String map = "http://maps.google.co.in/maps?q=" + address;
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+        startActivity(i);
     }
 }

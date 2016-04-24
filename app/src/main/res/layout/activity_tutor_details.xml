@@ -178,6 +178,9 @@
                 android:layout_margin="5dp"
                 android:layout_weight="1.76" />
 
+
+
+
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -212,9 +215,26 @@
                 android:clickable="true"
                 android:baselineAlignBottom="false"
                 android:layout_alignTop="@+id/imageTextButton"
+                android:layout_toLeftOf="@+id/imageLocationButton"
+                android:layout_toStartOf="@+id/imageLocationButton"
+                android:layout_marginRight="8dp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageLocationButton"
+                android:src="@drawable/ic_location_button"
+                android:background="@color/cardview_light_background"
+                android:clickable="true"
+                android:baselineAlignBottom="false"
+                android:layout_alignBottom="@+id/imageEmailButton"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="8dp" />
+
+                />
+
+
+
 
         </RelativeLayout>
 
