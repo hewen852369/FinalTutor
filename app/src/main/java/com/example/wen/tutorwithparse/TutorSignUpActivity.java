@@ -32,11 +32,13 @@ public class TutorSignUpActivity extends AppCompatActivity {
             EditText cell = (EditText)findViewById(R.id.TFcell);
             EditText subject = (EditText)findViewById(R.id.TFsubject);
             EditText price = (EditText)findViewById(R.id.TFprice);
+            EditText about = (EditText)findViewById(R.id.TFabout);
 
             String addressstr = address.getText().toString();
             String cellstr = cell.getText().toString();
             String subjectstr = subject.getText().toString();
             String pricesstr = price.getText().toString();
+            String aboutstr = about.getText().toString();
 
             if(addressstr.isEmpty())
             {
@@ -78,6 +80,7 @@ public class TutorSignUpActivity extends AppCompatActivity {
                 tutor.put("MemberID",username);
                 tutor.put("Subject",subjectstr);
                 tutor.put("Price",pricesstr);
+                tutor.put("Message",aboutstr);
                 tutor.saveInBackground();
                 Intent i = new Intent(TutorSignUpActivity.this,LoginActivity.class);
                 startActivity(i);

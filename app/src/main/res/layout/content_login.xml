@@ -52,38 +52,40 @@
         android:layout_alignParentStart="true" />
 
     <Button
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Login"
+        android:textSize="25dp"
+        android:textColor="#5C98FF"
         android:id="@+id/Blogin"
-        android:layout_marginTop="69dp"
+        android:layout_marginTop="47dp"
+        android:onClick="loginClick"
         android:layout_below="@+id/TFpassword"
-        android:layout_centerHorizontal="true"
-        android:onClick="loginClick" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="New User?"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/Blogin"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingBottom="50dp" />
 
     <Button
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Sign up"
+        android:textColor="#5C98FF"
+        android:textSize="25dp"
         android:id="@+id/Bsignup"
-        android:layout_below="@+id/textView3"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="signupClick" />
+        android:onClick="signupClick"
+        android:layout_below="@+id/Blogin" />
 
     <Button
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forget Password"
+        android:textColor="#5C98FF"
+        android:textSize="25dp"
         android:id="@+id/Breset"
         android:layout_below="@+id/Bsignup"
         android:layout_alignRight="@+id/Bsignup"

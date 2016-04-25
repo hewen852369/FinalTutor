@@ -13,9 +13,11 @@
     tools:showIn="@layout/activity_student_sign_up">
 
     <Button
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sign up"
+        android:textSize="25dp"
         android:id="@+id/Bstudentsignup"
         android:onClick="signupClick"
         android:layout_below="@+id/TFcell"

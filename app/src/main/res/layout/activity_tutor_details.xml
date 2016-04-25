@@ -190,9 +190,10 @@
                 android:background="@color/cardview_light_background"
                 android:clickable="true"
                 android:baselineAlignBottom="false"
-                android:layout_alignBottom="@+id/Breview"
-                android:layout_toRightOf="@+id/Breview"
-                android:layout_toEndOf="@+id/Breview" />
+                android:layout_alignTop="@+id/tutorRatingBar"
+                android:layout_toLeftOf="@+id/imageTextButton"
+                android:layout_toStartOf="@+id/imageTextButton"
+                android:layout_marginRight="11dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -202,8 +203,9 @@
                 android:background="@color/cardview_light_background"
                 android:clickable="true"
                 android:layout_alignTop="@+id/imageCallButton"
-                android:layout_toRightOf="@+id/viewReviews"
-                android:layout_toEndOf="@+id/viewReviews" />
+                android:layout_toLeftOf="@+id/imageEmailButton"
+                android:layout_toStartOf="@+id/imageEmailButton"
+                android:layout_marginRight="11dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -213,27 +215,10 @@
                 android:background="@color/cardview_light_background"
                 android:clickable="true"
                 android:baselineAlignBottom="false"
-                android:layout_alignTop="@+id/imageTextButton"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create/Edit Review"
-                android:id="@+id/Breview"
-                android:layout_below="@+id/viewReviews"
-                android:layout_alignLeft="@+id/tutorRatingBar"
-                android:layout_alignStart="@+id/tutorRatingBar" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View Reviews"
-                android:id="@+id/viewReviews"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imageLocationButton"
+                android:layout_toStartOf="@+id/imageLocationButton"
+                android:layout_marginRight="3dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -244,14 +229,54 @@
                 android:clickable="true"
                 android:baselineAlignBottom="false"
 
-                android:layout_alignBottom="@+id/viewReviews"
-                android:layout_alignRight="@+id/imageEmailButton"
-                android:layout_alignEnd="@+id/imageEmailButton" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
 
 
 
         </RelativeLayout>
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/card_divider" />
+
+        <!-- User Actions -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/yak_action_margin"
+            android:weightSum="1"
+            android:id="@+id/....">
+
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create/Edit Review"
+                android:id="@+id/Breview"
+                android:layout_alignTop="@+id/viewReviews"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Reviews"
+                android:id="@+id/viewReviews"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+        </RelativeLayout>
+
 
     </LinearLayout>
 
