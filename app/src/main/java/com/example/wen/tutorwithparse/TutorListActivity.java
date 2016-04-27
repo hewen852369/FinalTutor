@@ -54,7 +54,7 @@ public class TutorListActivity extends AppCompatActivity implements Serializable
 
     public void queryParse() {
         ParseQuery<ParseObject> query = new ParseQuery<>("TutorsSubjects");
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.include("members");
         if (!categoryName.equals("Others"))
             query.whereEqualTo("Subject", categoryName);

@@ -18,6 +18,13 @@ import com.parse.ParseObject;
 public class TutorSignUpActivity extends AppCompatActivity {
 
     private String subject;
+    private EditText address;
+    private EditText cell;
+    private EditText subcategory;
+    private Spinner subjectList;
+    private EditText price;
+    private EditText about;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +32,32 @@ public class TutorSignUpActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tutor Sign Up");
+
+        subject = "";
+        address = (EditText)findViewById(R.id.TFaddress);
+        cell = (EditText)findViewById(R.id.TFcell);
+        subcategory = (EditText)findViewById(R.id.et_subCategory);
+        subjectList = (Spinner) findViewById(R.id.subjectList);
+        price = (EditText)findViewById(R.id.TFprice);
+        about = (EditText)findViewById(R.id.TFabout);
+
+        assert subjectList != null;
+        subjectList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String subject = String.valueOf(parentView.getItemAtPosition(position));
+                setSubject(subject);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                setSubject("Others");
+            }
+        });
+    }
+
+    public void setSubject(String str) {
+        subject = str;
     }
 
 
@@ -32,21 +65,6 @@ public class TutorSignUpActivity extends AppCompatActivity {
     {
         if(v.getId()==R.id.Btutorsignup)
         {
-            EditText address = (EditText)findViewById(R.id.TFaddress);
-            EditText cell = (EditText)findViewById(R.id.TFcell);
-            EditText subcategory = (EditText)findViewById(R.id.et_subCategory);
-            Spinner subjectList = (Spinner) findViewById(R.id.subjectList);
-            EditText price = (EditText)findViewById(R.id.TFprice);
-            EditText about = (EditText)findViewById(R.id.TFabout);
-
-            assert subjectList != null;
-            subjectList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String subject = String.valueOf(parent.getItemAtPosition(position));
-                    setSubject(subject);
-                }
-            });
 
             String subcategorystr = subcategory.getText().toString();
             String addressstr = address.getText().toString();
@@ -116,8 +134,6 @@ public class TutorSignUpActivity extends AppCompatActivity {
         }
     }
 
-    public void setSubject(String str) {
-        subject = str;
-    }
+
 
 }

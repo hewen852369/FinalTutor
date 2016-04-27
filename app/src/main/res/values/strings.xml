@@ -24,6 +24,7 @@
     <!-- For the Tutor Sign-up Activity -->
     <string name="category_prompt">Choose a Subject</string>
     <string-array name="category_list">
+        <item> </item>>
         <item>Math</item>
         <item>Science</item>
         <item>Social Studies</item>
