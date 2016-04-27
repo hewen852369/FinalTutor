@@ -37,22 +37,7 @@ public class CategoriesActivity extends AppCompatActivity {
         //addCategories();
         queryParse();
 
-        categoryListView = (ListView) findViewById(R.id.CategoryListView);
-        CategoryAdapter adapter = new CategoryAdapter(CategoriesActivity.this, rowItems);
-        categoryListView.setAdapter(adapter);
 
-        categoryListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        //converts the value of the list position into a string
-                        CategoriesRowItem item = (CategoriesRowItem) parent.getItemAtPosition(position);
-                        String name = item.getTitle();
-                        //goToSubCategory(name);
-                        goToTutorList(name);
-                    }
-                }
-        );
 
 
     }
@@ -61,7 +46,7 @@ public class CategoriesActivity extends AppCompatActivity {
     public void queryParse() {
         ParseQuery<ParseObject> query = new ParseQuery<>("TutorsSubjects");
 
-        query.setCachePolicy(ParseQuery.CachePolicy.CACHE_THEN_NETWORK);
+        query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -74,6 +59,23 @@ public class CategoriesActivity extends AppCompatActivity {
                             p = userList.get(i);
                             addCategory(p.getString("Subject"));
                         }
+
+                        categoryListView = (ListView) findViewById(R.id.CategoryListView);
+                        CategoryAdapter adapter = new CategoryAdapter(CategoriesActivity.this, rowItems);
+                        categoryListView.setAdapter(adapter);
+
+                        categoryListView.setOnItemClickListener(
+                                new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        //converts the value of the list position into a string
+                                        CategoriesRowItem item = (CategoriesRowItem) parent.getItemAtPosition(position);
+                                        String name = item.getTitle();
+                                        //goToSubCategory(name);
+                                        goToTutorList(name);
+                                    }
+                                }
+                        );
                     }
 
                 } else {

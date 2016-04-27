@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
 
 public class TutorSignUpActivity extends AppCompatActivity {
@@ -68,20 +69,27 @@ public class TutorSignUpActivity extends AppCompatActivity {
                 String name = getIntent().getStringExtra("name");
                 String password = getIntent().getStringExtra("password");
                 ParseObject user = new ParseObject("Members");
+
+                int tutorPrice = Integer.parseInt(pricesstr);
                 user.put("MemberID",username);
                 user.put("Email",email);
                 user.put("Name",name);
                 user.put("Password",password);
                 user.put("Address",addressstr);
-                user.put("PhoneNumber",cellstr);
+                user.put("PhoneNumber", cellstr);
                 user.put("UserType", "tutor");
-                user.saveInBackground();
-                ParseObject tutor = new ParseObject("TutorsSubjects");
+                // user.saveInBackground();
+
+
+                ParseObject tutor = new ParseObject("TutorsSubjects");//tutor.put("members", user.getObjectId());
+                //tutor.put("member","$"+user.getObjectId());
                 tutor.put("MemberID",username);
                 tutor.put("Subject",subjectstr);
-                tutor.put("Price",pricesstr);
+                tutor.put("Price",tutorPrice);
                 tutor.put("Message",aboutstr);
+                tutor.put("members", user);
                 tutor.saveInBackground();
+
                 Intent i = new Intent(TutorSignUpActivity.this,LoginActivity.class);
                 startActivity(i);
 

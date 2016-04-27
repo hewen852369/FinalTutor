@@ -54,7 +54,10 @@ public class TutorListActivity extends AppCompatActivity implements Serializable
         ParseQuery<ParseObject> query = new ParseQuery<>("TutorsSubjects");
         query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
         query.include("members");
-        query.whereEqualTo("Subject", categoryName);
+        if (!categoryName.equals("Others"))
+            query.whereEqualTo("Subject", categoryName);
+        else
+            query.whereNotEqualTo("Subject", categoryName);
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -73,8 +76,6 @@ public class TutorListActivity extends AppCompatActivity implements Serializable
                                     tutor.getString("Subcategory"), tutor.getInt("numStudents"), tutor.getString("Message"),
                                     member.getString("PhoneNumber"), member.getString("Email"), member.getString("Address"),
                                     tutor.getInt("Price"));
-
-                            System.out.println("price = " + tutor.getInt("Price"));
 
                             if (!doesTutorExist(t))
                                 tutorList.add(t);
