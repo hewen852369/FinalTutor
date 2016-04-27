@@ -7,7 +7,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.parse.ParseException;
@@ -15,6 +17,7 @@ import com.parse.ParseObject;
 
 public class TutorSignUpActivity extends AppCompatActivity {
 
+    private String subject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +34,23 @@ public class TutorSignUpActivity extends AppCompatActivity {
         {
             EditText address = (EditText)findViewById(R.id.TFaddress);
             EditText cell = (EditText)findViewById(R.id.TFcell);
-            EditText subject = (EditText)findViewById(R.id.TFsubject);
+            EditText subcategory = (EditText)findViewById(R.id.et_subCategory);
+            Spinner subjectList = (Spinner) findViewById(R.id.subjectList);
             EditText price = (EditText)findViewById(R.id.TFprice);
             EditText about = (EditText)findViewById(R.id.TFabout);
 
+            assert subjectList != null;
+            subjectList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String subject = String.valueOf(parent.getItemAtPosition(position));
+                    setSubject(subject);
+                }
+            });
+
+            String subcategorystr = subcategory.getText().toString();
             String addressstr = address.getText().toString();
             String cellstr = cell.getText().toString();
-            String subjectstr = subject.getText().toString();
             String pricesstr = price.getText().toString();
             String aboutstr = about.getText().toString();
 
@@ -51,7 +64,7 @@ public class TutorSignUpActivity extends AppCompatActivity {
                 Toast cell_check = Toast.makeText(TutorSignUpActivity.this,"Invalid cell phone number",Toast.LENGTH_SHORT);
                 cell_check.show();
             }
-            else if(subjectstr.isEmpty())
+            else if(subject.isEmpty())
             {
                 Toast subject_check = Toast.makeText(TutorSignUpActivity.this,"Please enter subject.",Toast.LENGTH_SHORT);
                 subject_check.show();
@@ -59,6 +72,11 @@ public class TutorSignUpActivity extends AppCompatActivity {
             else if(Integer.valueOf(pricesstr)<0)
             {
                 Toast price_check = Toast.makeText(TutorSignUpActivity.this,"Invalid price.",Toast.LENGTH_SHORT);
+                price_check.show();
+            }
+            else if (subcategorystr.isEmpty())
+            {
+                Toast price_check = Toast.makeText(TutorSignUpActivity.this,"Please enter a course.",Toast.LENGTH_SHORT);
                 price_check.show();
             }
             else
@@ -84,7 +102,8 @@ public class TutorSignUpActivity extends AppCompatActivity {
                 ParseObject tutor = new ParseObject("TutorsSubjects");//tutor.put("members", user.getObjectId());
                 //tutor.put("member","$"+user.getObjectId());
                 tutor.put("MemberID",username);
-                tutor.put("Subject",subjectstr);
+                tutor.put("Subject",subject);
+                tutor.put("Subcategory", subcategorystr);
                 tutor.put("Price",tutorPrice);
                 tutor.put("Message",aboutstr);
                 tutor.put("members", user);
@@ -95,6 +114,10 @@ public class TutorSignUpActivity extends AppCompatActivity {
 
             }
         }
+    }
+
+    public void setSubject(String str) {
+        subject = str;
     }
 
 }

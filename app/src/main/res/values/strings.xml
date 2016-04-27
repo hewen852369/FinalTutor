@@ -19,4 +19,18 @@
     <string name="title_activity_refined_search_list">Search Activity</string>
     <string name="title_activity_review">Search Activity</string>
     <string name="title_activity_viewreviews">Search Activity</string>
+
+
+    <!-- For the Tutor Sign-up Activity -->
+    <string name="category_prompt">Choose a Subject</string>
+    <string-array name="category_list">
+        <item>Math</item>
+        <item>Science</item>
+        <item>Social Studies</item>
+        <item>English/Language Arts</item>
+        <item>Fine Arts</item>
+        <item>Business Applications</item>
+        <item>Technology</item>
+        <item>Other</item>
+    </string-array>
 </resources>

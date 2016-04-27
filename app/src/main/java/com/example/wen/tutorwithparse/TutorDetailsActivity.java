@@ -58,7 +58,7 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         tvName.setText(tutor.getName());
         tvSubject.setText(tutor.getSubcategory());
         tvAddress.setText(tutor.getAddress());
-        tvPrice.setText(String.valueOf(tutor.getPrice()));
+        tvPrice.setText(tutor.priceAsAString());
         tvNumStudent.setText(String.valueOf(tutor.getNumOfStudents()));
         tvBio.setText(tutor.getMessage());
 
@@ -67,7 +67,7 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
         final String tutorName = tutor.getName();
         final String address = tutor.getAddress();
         ratingstars=0;
-        ParseQuery<ParseObject> query = new ParseQuery("Reviews");
+        ParseQuery<ParseObject> query = new ParseQuery<>("Reviews");
         query.whereEqualTo("tutorPhone", tutorPhone);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override

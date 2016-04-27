@@ -106,4 +106,8 @@ public class Tutor implements Serializable {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public String priceAsAString() {
+       return "$" + price + ".00";
+    }
 }

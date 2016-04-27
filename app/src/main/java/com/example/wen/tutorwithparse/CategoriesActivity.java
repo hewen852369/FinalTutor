@@ -39,9 +39,7 @@ public class CategoriesActivity extends AppCompatActivity {
         names = new ArrayList<>();
         //addCategories();
         queryParse();
-
     }
-
 
     public void queryParse() {
         ParseQuery<ParseObject> query = new ParseQuery<>("TutorsSubjects");
@@ -88,8 +86,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
         });
     }
-
-
+    
     private void addCategories() {
         rowItems.add(new CategoriesRowItem(R.drawable.math_52, "Math"));
         rowItems.add(new CategoriesRowItem(R.drawable.test_tube_52, "Science"));
