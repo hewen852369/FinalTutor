@@ -47,14 +47,6 @@ public class ViewReviewsActivity extends AppCompatActivity implements Serializab
         String tutorName = getIntent().getStringExtra("tutorName");
         TextView tv = (TextView)findViewById(R.id.tNametext);
         tv.setText(tutorName);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         ArrObj = new ArrayList<ParseObject>();
         initList();

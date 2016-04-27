@@ -158,7 +158,9 @@ public class RefinedSearchList extends AppCompatActivity {
 
 
     public void goToDetails(Tutor tutor) {
+        String username = getIntent().getStringExtra("Username");
         Intent details = new Intent(this, TutorDetailsActivity.class);
+        details.putExtra("Username",username);
         details.putExtra("Tutor", tutor);
         startActivity(details);
     }
@@ -167,7 +169,9 @@ public class RefinedSearchList extends AppCompatActivity {
 
     public void refineSearchClick(View v)
     {
+        String username = getIntent().getStringExtra("Username");
         Intent i = new Intent(RefinedSearchList.this,RefineSearch.class);
+        i.putExtra("Username",username);
         finish();
         startActivity(i);
     }

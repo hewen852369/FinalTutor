@@ -26,10 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class TutorDetailsActivity extends AppCompatActivity implements Serializable {
     String tutorName;
     private float ratingstars;
+    String userType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,19 +126,44 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
                 locateTutor(address);
             }
         });
-
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(TutorDetailsActivity.this, "Review", Toast.LENGTH_SHORT).show();
                 String username = getIntent().getStringExtra("Username");
+                ParseQuery<ParseObject> query = new ParseQuery("Members");
+                query.whereEqualTo("MemberID", username);
+                query.findInBackground(new FindCallback<ParseObject>() {
+                                           @Override
+                                           public void done(List<ParseObject> userList, ParseException e) {
 
-                Intent i = new Intent(TutorDetailsActivity.this, ReviewActivity.class);
-                i.putExtra("tutorName", tutorName);
-                i.putExtra("tutorPhone", tutorPhone);
-                i.putExtra("Username", username);
+                                               if (e == null) {
+                                                   if (userList.size() != 0) {
+                                                       ParseObject user;
+                                                       for (int i = 0; i < userList.size(); i++) {
+                                                           user = userList.get(0);
+                                                           userType = user.getString("UserType");
+                                                       }
+                                                   }
+                                               } else {
+                                                   Log.d("score", "Error: " + e.getMessage());
+                                               }
+                                           }
+                                       }
 
-                startActivity(i);
+                );
+                if (Objects.equals("tutor", userType))
+                {
+                    Toast tutor = Toast.makeText(TutorDetailsActivity.this,"Tutors cannot post reviews",Toast.LENGTH_SHORT);
+                    tutor.show();
+                }
+                else {
+                    Intent review = new Intent(TutorDetailsActivity.this, ReviewActivity.class);
+                    review.putExtra("tutorName", tutorName);
+                    review.putExtra("tutorPhone", tutorPhone);
+                    review.putExtra("Username", username);
+                    startActivity(review);
+                }
             }
         });
 

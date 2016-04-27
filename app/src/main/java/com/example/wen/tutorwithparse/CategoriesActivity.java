@@ -146,13 +146,17 @@ public class CategoriesActivity extends AppCompatActivity {
 
 
     public void goToSubCategory(String category) {
+        String username = getIntent().getStringExtra("Username");
         Intent subcategory = new Intent(this, SubcategoriesActivity.class);
+        subcategory.putExtra("Username", username);
         subcategory.putExtra("Category", category);
         startActivity(subcategory);
     }
 
     public void goToTutorList(String category) {
+        String username = getIntent().getStringExtra("Username");
         Intent tutorList = new Intent(this, TutorListActivity.class);
+        tutorList.putExtra("Username", username);
         tutorList.putExtra("Category", category);
         tutorList.putExtra("Username",getIntent().getStringExtra("Username"));
         tutorList.putExtra("CategoryList", names);

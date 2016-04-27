@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -71,6 +72,8 @@ public class TutorSignUpActivity extends AppCompatActivity {
             String cellstr = cell.getText().toString();
             String pricesstr = price.getText().toString();
             String aboutstr = about.getText().toString();
+            Boolean upgradeCheck = ((CheckBox) v).isChecked();
+
 
             if(addressstr.isEmpty())
             {

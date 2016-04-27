@@ -13,30 +13,87 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.wen.tutorwithparse.Adapters.ReviewAdapter;
+import com.example.wen.tutorwithparse.Models.ReviewModel;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ReviewActivity extends AppCompatActivity {
+    String[] items;
+    ArrayList<String> listItems = new ArrayList<>();
+    ArrayList<ParseObject> ArrObj;
+    ParseObject p;
+    private ArrayList<ReviewModel> reviewList;
+
+    String comment;
+    EditText commentText;
     RatingBar ratingBar;
     Button btn;
+    float ratingStars;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        commentText = (EditText) findViewById(R.id.editText2);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        final RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
+        ArrObj = new ArrayList<ParseObject>();
+        String username = getIntent().getStringExtra("Username");
+        final String tutorPhone = getIntent().getStringExtra("tutorPhone");
+        ParseQuery<ParseObject> query = new ParseQuery("Reviews");
+        query.whereEqualTo("studentMemberID", username);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> userList, ParseException e) {
+                reviewList = new ArrayList<>();
+
+                if (e == null) {
+                    if (userList.size() != 0) {
+                        ParseObject review;
+                        for (int i = 0; i < userList.size(); i++) {
+                            review = userList.get(i);
+                            /*reviewList.add(new ReviewModel(review.getString("studentMemberID"),
+                                    review.getString("Comment"),
+                                    review.getInt("Stars")));*/
+                            if (Objects.equals(tutorPhone, review.getString("tutorPhone"))) {
+                                //Intent i = new Intent(ReviewActivity.this, TutorDetailsActivity.class);
+                                comment = review.getString("Comment");
+                                ratingStars = review.getInt("Stars");
+                                commentText.setText(comment, TextView.BufferType.EDITABLE);
+                                ratingBar.setRating(ratingStars);
+                                review.deleteInBackground();
+                            }
+
+
+                        }
+                    }
+                }
+                else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+
+
+            }
+
+        });
     }
 
 
@@ -44,8 +101,8 @@ public class ReviewActivity extends AppCompatActivity {
     public void submitReview(View view) {
 
         if (view.getId()==R.id.submitReview){
-            RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-            EditText comment = (EditText) findViewById(R.id.editText2);
+            ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+            commentText = (EditText) findViewById(R.id.editText2);
             ratingBar.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
                 public void onRatingChanged(RatingBar ratingBar, float rating,
                                             boolean fromUser) {
@@ -56,6 +113,7 @@ public class ReviewActivity extends AppCompatActivity {
             });
         /*btn.setOnClickListener(new View.OnClickListener() {
 
+                        }
 
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
@@ -63,7 +121,7 @@ public class ReviewActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Your Selected Ratings  : " + String.valueOf(rating), Toast.LENGTH_LONG).show();
             }
         });*/
-            String commentstr = comment.getText().toString();
+            String commentstr = commentText.getText().toString();
             ratingBar = (RatingBar) findViewById(R.id.ratingBar);
             float rating = ratingBar.getRating();
             //System.out.println(rating);
@@ -84,10 +142,17 @@ public class ReviewActivity extends AppCompatActivity {
                 user.put("studentMemberID", username);
                 user.put("tutorPhone", tutorPhone);
                 user.saveInBackground();
+                username = getIntent().getStringExtra("Username");
+                /*Intent i = new Intent(ReviewActivity.this, TutorDetailsActivity.class);                                                                                                                             Intent i = new Intent(TutorDetailsActivity.this, ReviewActivity.class);
+                i.putExtra("tutorName", tutorName);
+                i.putExtra("tutorPhone", tutorPhone);
+                i.putExtra("Username", username);
+                startActivity(i);*/
                 finish();
             }
         }
 
+                    }
 
     }
-}
+

@@ -16,7 +16,6 @@ import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

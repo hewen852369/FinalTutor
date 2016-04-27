@@ -20,9 +20,11 @@ public class RefineSearch extends AppCompatActivity {
 
 
     public void refineClick(View v){
+        String username = getIntent().getStringExtra("Username");
         EditText a = (EditText)findViewById(R.id.txtsearch);
         String searchName = a.getText().toString();
         final Intent i = new Intent(RefineSearch.this,RefinedSearchList.class);
+        i.putExtra("Username", username);
         i.putExtra("Name", searchName);
         i.putExtra("Subject", searchSubject);
         finish();

@@ -73,7 +73,9 @@ public class SubcategoriesActivity extends AppCompatActivity {
     }
 
     public void goToTutorList(String name) {
+        String username = getIntent().getStringExtra("Username");
         Intent tutorList = new Intent(this, TutorListActivity.class);
+        tutorList.putExtra("Username", username);
         tutorList.putExtra("Subcategory", categoryName);
         startActivity(tutorList);
     }

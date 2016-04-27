@@ -75,7 +75,7 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
                                     member.getString("Email"),
                                     member.getString("Address"),
                                     tutor.getInt("Price")
-                                    ));
+                            ));
 
 
                         }
@@ -110,7 +110,9 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
     }
 
     public void goToDetails(Tutor tutor) {
+        String username = getIntent().getStringExtra("Username");
         Intent details = new Intent(this, TutorDetailsActivity.class);
+        details.putExtra("Username", username);
         details.putExtra("Tutor", tutor);
         startActivity(details);
     }
@@ -118,7 +120,9 @@ public class SearchActivity extends AppCompatActivity implements Serializable {
     public void refineSearchClick(View v)
     {
         finish();
+        String username = getIntent().getStringExtra("Username");
         Intent i = new Intent(SearchActivity.this,RefineSearch.class);
+        i.putExtra("Username", username);
         startActivity(i);
     }
     
