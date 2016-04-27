@@ -135,6 +135,7 @@ public class TutorDetailsActivity extends AppCompatActivity implements Serializa
                 i.putExtra("tutorName", tutorName);
                 i.putExtra("tutorPhone", tutorPhone);
                 i.putExtra("Username", username);
+
                 startActivity(i);
             }
         });

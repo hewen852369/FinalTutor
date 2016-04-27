@@ -1,11 +1,15 @@
 package com.example.wen.tutorwithparse;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -30,20 +34,15 @@ public class ReviewActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_ATOP);
     }
 
 
 
     public void submitReview(View view) {
+
         if (view.getId()==R.id.submitReview){
             RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
             EditText comment = (EditText) findViewById(R.id.editText2);
@@ -78,6 +77,7 @@ public class ReviewActivity extends AppCompatActivity {
                 String username= getIntent().getStringExtra("Username");
                 String tutorPhone=getIntent().getStringExtra("tutorPhone");
                 ParseObject user = new ParseObject("Reviews");
+//                Log.d("username: ", username);
                 user.put("tutorName", tutorName);
                 user.put("Comment",commentstr);
                 user.put("Stars", rating);

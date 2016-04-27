@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class HomeActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
 
     public void goToCategories() {
         Intent categories = new Intent(this, CategoriesActivity.class);
+        String username = getIntent().getStringExtra("Username");
+        categories.putExtra("Username", username);
         startActivity(categories);
     }
 

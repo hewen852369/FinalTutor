@@ -29,6 +29,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TFname"
+        android:inputType="text"
         android:layout_below="@+id/TVusername"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -47,6 +48,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TFemail"
+        android:inputType="text"
         android:layout_below="@+id/textView6"
         android:layout_alignRight="@+id/TFname"
         android:layout_alignEnd="@+id/TFname" />
@@ -65,6 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/TFusername"
+        android:inputType="text"
         android:layout_below="@+id/textView7"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

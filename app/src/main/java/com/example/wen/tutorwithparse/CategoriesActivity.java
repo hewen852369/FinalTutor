@@ -154,6 +154,7 @@ public class CategoriesActivity extends AppCompatActivity {
     public void goToTutorList(String category) {
         Intent tutorList = new Intent(this, TutorListActivity.class);
         tutorList.putExtra("Category", category);
+        tutorList.putExtra("Username",getIntent().getStringExtra("Username"));
         tutorList.putExtra("CategoryList", names);
         startActivity(tutorList);
     }

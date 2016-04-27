@@ -109,6 +109,7 @@ public class TutorListActivity extends AppCompatActivity implements Serializable
 
     public void goToDetails(Tutor tutor) {
         Intent details = new Intent(this, TutorDetailsActivity.class);
+        details.putExtra("Username",getIntent().getStringExtra("Username"));
         details.putExtra("Tutor", tutor);
         startActivity(details);
     }
