@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class CategoriesActivity extends AppCompatActivity {
 
     private ListView categoryListView;
     private ArrayList<CategoriesRowItem> rowItems;
+    private ArrayList<String> names;
     private ParseObject p;
 
     @Override
@@ -34,11 +36,9 @@ public class CategoriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
 
         rowItems = new ArrayList<>();
+        names = new ArrayList<>();
         //addCategories();
         queryParse();
-
-
-
 
     }
 
@@ -107,27 +107,35 @@ public class CategoriesActivity extends AppCompatActivity {
         switch (category) {
             case "Math":
                 rowItems.add(new CategoriesRowItem(R.drawable.math_52, "Math"));
+                names.add("Math");
                 break;
             case "Science":
                 rowItems.add(new CategoriesRowItem(R.drawable.test_tube_52, "Science"));
+                names.add("Science");
                 break;
             case "Social Studies":
                 rowItems.add(new CategoriesRowItem(R.drawable.conference_48, "Social Studies"));
+                names.add("Social Studies");
                 break;
             case "English/Language Arts":
                 rowItems.add(new CategoriesRowItem(R.drawable.literature_52, "English/Language Arts"));
+                names.add("English/Language Arts");
                 break;
             case "Fine Arts":
                 rowItems.add(new CategoriesRowItem(R.drawable.university_52, "Fine Arts"));
+                names.add("Fine Arts");
                 break;
             case "Business Applications":
                 rowItems.add(new CategoriesRowItem(R.drawable.ic_work_black_48dp, "Business Applications"));
+                names.add("Business Applications");
                 break;
             case "Technology":
                 rowItems.add(new CategoriesRowItem(R.drawable.ic_phonelink_black_48dp, "Technology"));
+                names.add("Technology");
                 break;
             default:
                 rowItems.add(new CategoriesRowItem(R.drawable.ic_person_black_48dp, "Others"));
+                names.add("Others");
                 break;
         }
     }
@@ -149,6 +157,7 @@ public class CategoriesActivity extends AppCompatActivity {
     public void goToTutorList(String category) {
         Intent tutorList = new Intent(this, TutorListActivity.class);
         tutorList.putExtra("Category", category);
+        tutorList.putExtra("CategoryList", names);
         startActivity(tutorList);
     }
 }

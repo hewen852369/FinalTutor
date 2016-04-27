@@ -33,6 +33,7 @@ public class TutorListActivity extends AppCompatActivity implements Serializable
     private String categoryName;
     private ArrayList<Tutor> tutorList;
     private ListAdapter tutorListAdapter;
+    private ArrayList<String> categoryList;
     ListView tutorListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class TutorListActivity extends AppCompatActivity implements Serializable
 
         //subCategoryName = getIntent().getExtras().getString("Subcategory");
         categoryName = getIntent().getExtras().getString("Category");
+        categoryList= getIntent().getStringArrayListExtra("CategoryList");
 
         //getTutorNames(subCategoryName);
 
@@ -57,7 +59,7 @@ public class TutorListActivity extends AppCompatActivity implements Serializable
         if (!categoryName.equals("Others"))
             query.whereEqualTo("Subject", categoryName);
         else
-            query.whereNotEqualTo("Subject", categoryName);
+            query.whereNotContainedIn("Subject", categoryList);
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
