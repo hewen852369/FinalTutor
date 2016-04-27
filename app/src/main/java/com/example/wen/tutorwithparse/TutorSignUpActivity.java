@@ -114,17 +114,18 @@ public class TutorSignUpActivity extends AppCompatActivity {
                 user.put("Address",addressstr);
                 user.put("PhoneNumber", cellstr);
                 user.put("UserType", "tutor");
-                // user.saveInBackground();
 
 
-                ParseObject tutor = new ParseObject("TutorsSubjects");//tutor.put("members", user.getObjectId());
-                //tutor.put("member","$"+user.getObjectId());
+
+                ParseObject tutor = new ParseObject("TutorsSubjects");
+
                 tutor.put("MemberID",username);
                 tutor.put("Subject",subject);
                 tutor.put("Subcategory", subcategorystr);
                 tutor.put("Price",tutorPrice);
                 tutor.put("Message",aboutstr);
                 tutor.put("members", user);
+                tutor.put("numStudents",0);
                 tutor.saveInBackground();
 
                 Intent i = new Intent(TutorSignUpActivity.this,LoginActivity.class);
