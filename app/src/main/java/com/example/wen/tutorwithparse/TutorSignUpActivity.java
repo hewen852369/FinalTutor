@@ -25,6 +25,7 @@ public class TutorSignUpActivity extends AppCompatActivity {
     private Spinner subjectList;
     private EditText price;
     private EditText about;
+    CheckBox box;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class TutorSignUpActivity extends AppCompatActivity {
         subjectList = (Spinner) findViewById(R.id.subjectList);
         price = (EditText)findViewById(R.id.TFprice);
         about = (EditText)findViewById(R.id.TFabout);
-
+        box = (CheckBox) findViewById(R.id.upgradeBox);
         assert subjectList != null;
         subjectList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -55,6 +56,9 @@ public class TutorSignUpActivity extends AppCompatActivity {
                 setSubject("Others");
             }
         });
+
+
+
     }
 
     public void setSubject(String str) {
@@ -72,7 +76,7 @@ public class TutorSignUpActivity extends AppCompatActivity {
             String cellstr = cell.getText().toString();
             String pricesstr = price.getText().toString();
             String aboutstr = about.getText().toString();
-            Boolean upgradeCheck = ((CheckBox) v).isChecked();
+            Boolean upgradeCheck = box.isChecked();
 
 
             if(addressstr.isEmpty())
@@ -117,6 +121,7 @@ public class TutorSignUpActivity extends AppCompatActivity {
                 user.put("Address",addressstr);
                 user.put("PhoneNumber", cellstr);
                 user.put("UserType", "tutor");
+                user.put("Upgrade", upgradeCheck);
 
 
 

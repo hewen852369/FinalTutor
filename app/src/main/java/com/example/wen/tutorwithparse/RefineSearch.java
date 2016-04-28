@@ -42,17 +42,17 @@ public class RefineSearch extends AppCompatActivity {
     }
 
     public void searchSocialStudies(View v){
-        searchSubject = "SocialStudies";
+        searchSubject = "Social Studies";
         Log.d("subject: ", searchSubject);
     }
 
     public void searchEnglish(View v){
-        searchSubject = "English";
+        searchSubject = "English/Language Arts";
         Log.d("subject: ", searchSubject);
     }
 
     public void searchArt(View v){
-        searchSubject = "Art";
+        searchSubject = "Fine Arts";
         Log.d("subject: ", searchSubject);
     }
 
