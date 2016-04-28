@@ -115,7 +115,9 @@ public class HomeActivity extends AppCompatActivity implements Serializable{
                         advertisement.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                String username = getIntent().getStringExtra("Username");
                                 Intent i = new Intent(HomeActivity.this, TutorDetailsActivity.class);
+                                i.putExtra("Username", username);
                                 i.putExtra("Tutor", result);
                                 startActivity(i);
                             }
